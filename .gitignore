@@ -5,6 +5,7 @@ OnlyWeathersAPI/obj/
 # Node/Vue
 OnlyWeathersGUI/node_modules/
 OnlyWeathersGUI/dist/
+.vs/
 
 # systemowe
 .env

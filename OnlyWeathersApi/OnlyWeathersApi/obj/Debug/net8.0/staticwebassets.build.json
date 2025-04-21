@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "BTmYTy2Er2MoKBYkiUYGb98+tthPU2WNWjz/BHxS/2Q=",
+  "Source": "OnlyWeathersApi",
+  "BasePath": "_content/OnlyWeathersApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
