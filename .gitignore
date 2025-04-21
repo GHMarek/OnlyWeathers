@@ -1,0 +1,11 @@
+# .NET
+OnlyWeathersAPI/bin/
+OnlyWeathersAPI/obj/
+
+# Node/Vue
+OnlyWeathersGUI/node_modules/
+OnlyWeathersGUI/dist/
+
+# systemowe
+.env
+.DS_Store
