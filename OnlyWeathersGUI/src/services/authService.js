@@ -8,7 +8,7 @@ export const login = (email, password) =>
   })
 
 export const register = (email, password) =>
-  axios.post(`${API}/auth/register`, { email, password })
+  axios.post(`${API}/users/register`, { email, password })
 
 export const changePassword = (currentPassword, newPassword) => {
   const token = localStorage.getItem('token')

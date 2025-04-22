@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using OnlyWeathersApi.Models.DTO;
 using OnlyWeathersApi.Services;
 using System.Security.Claims;
@@ -28,6 +29,16 @@ namespace OnlyWeathersAPI.Controllers
             if (!result) return BadRequest("Invalid current password.");
 
             return Ok("Password changed successfully.");
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+        {
+            var success = await _userService.RegisterAsync(request.Email, request.Password);
+            if (!success)
+                return BadRequest("Invalid input or user already exists.");
+
+            return Ok("User registered successfully.");
         }
     }
 }

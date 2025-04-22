@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore;
 using OnlyWeathersApi.Data;
 using OnlyWeathersApi.Models;
 using OnlyWeathersApi.Services;
@@ -27,6 +28,18 @@ namespace OnlyWeathersAPI.Services
 
         public async Task<bool> RegisterAsync(string email, string password)
         {
+            // Walidacja emaila
+            var emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (string.IsNullOrEmpty(email) || !Regex.IsMatch(email, emailPattern))
+            {
+                return false; // Nie przechodzi walidacji
+            }
+
+            if (string.IsNullOrEmpty(password))
+            {
+                return false; // Hasło puste
+            }
+
             var exists = await _context.Users.AnyAsync(u => u.Email == email);
             if (exists) return false;
 
@@ -44,6 +57,7 @@ namespace OnlyWeathersAPI.Services
             await _context.SaveChangesAsync();
             return true;
         }
+
 
         public async Task<User?> GetUserByEmailAsync(string email)
         {

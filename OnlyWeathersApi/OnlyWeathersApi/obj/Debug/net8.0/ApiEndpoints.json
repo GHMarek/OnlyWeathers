@@ -16,22 +16,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "OnlyWeathersApi.Controllers.AuthController",
-    "Method": "Register",
-    "RelativePath": "api/Auth/register",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "OnlyWeathersApi.Models.DTO.RegisterRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "OnlyWeathersApi.Controllers.FavoritesController",
     "Method": "GetFavorites",
     "RelativePath": "api/Favorites",
@@ -114,6 +98,22 @@
       {
         "Name": "request",
         "Type": "OnlyWeathersApi.Models.DTO.ChangePasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlyWeathersAPI.Controllers.UsersController",
+    "Method": "Register",
+    "RelativePath": "api/Users/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "OnlyWeathersApi.Models.DTO.RegisterRequest",
         "IsRequired": true
       }
     ],

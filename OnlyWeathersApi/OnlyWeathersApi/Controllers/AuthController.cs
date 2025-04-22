@@ -18,7 +18,6 @@ namespace OnlyWeathersApi.Controllers
             _jwtService = jwtService;
             _userService = userService;
         }
-
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
@@ -29,16 +28,6 @@ namespace OnlyWeathersApi.Controllers
 
             var token = _jwtService.GenerateToken(user);
             return Ok(new { token });
-        }
-
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
-        {
-            var success = await _userService.RegisterAsync(request.Email, request.Password);
-            if (!success)
-                return BadRequest("User already exists.");
-
-            return Ok("User registered successfully.");
         }
 
     }

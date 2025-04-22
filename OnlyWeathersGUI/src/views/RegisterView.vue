@@ -20,14 +20,20 @@
   const error = ref('')
   const router = useRouter()
   const registerUser = async () => {
-    try {
-      await register(email.value, password.value)
-      error.value = ''
-      alert('Successful!')
-      router.push('/') 
-    } catch {
-      error.value = 'Rejestracja nieudana (email już istnieje?).'
+  try {
+    await register(email.value, password.value)
+    error.value = ''
+    alert('Successful!')
+    router.push('/')
+  } catch (err) {
+    // Sprawdzasz czy backend zwrócił wiadomość
+    if (err.response && err.response.data) {
+      error.value = err.response.data; // np. "Invalid email format" albo "User already exists."
+    } else {
+      error.value = 'Registration failed. Please try again.'
     }
   }
+}
+  
   </script>
   
