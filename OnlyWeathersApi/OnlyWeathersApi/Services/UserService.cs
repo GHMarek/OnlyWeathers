@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlyWeathersApi.Data;
 using OnlyWeathersApi.Models;
 using OnlyWeathersApi.Services;
 
@@ -6,41 +7,47 @@ namespace OnlyWeathersAPI.Services
 {
     public class UserService : IUserService
     {
-        // tu w przyszłości EF Core
-        private static readonly List<User> _users = new()
-        {
-            new User { Id = 1, Email = "admin@example.com", PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin") }
-        };
+        private readonly AppDbContext _context;
 
-        public Task<bool> ChangePasswordAsync(string email, string currentPassword, string newPassword)
+        public UserService(AppDbContext context)
         {
-            var user = _users.FirstOrDefault(u => u.Email == email);
-            if (user == null || !BCrypt.Net.BCrypt.Verify(currentPassword, user.PasswordHash))
-                return Task.FromResult(false);
-
-            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(newPassword);
-            return Task.FromResult(true);
+            _context = context;
         }
 
-        public Task<bool> RegisterAsync(string email, string password)
+        public async Task<bool> ChangePasswordAsync(string email, string currentPassword, string newPassword)
         {
-            var exists = _users.Any(u => u.Email == email);
-            if (exists) return Task.FromResult(false);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null || !BCrypt.Net.BCrypt.Verify(currentPassword, user.PasswordHash))
+                return false;
+
+            user.                                       PasswordHash = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> RegisterAsync(string email, string password)
+        {
+            var exists = await _context.Users.AnyAsync(u => u.Email == email);
+            if (exists) return false;
 
             var hashed = BCrypt.Net.BCrypt.HashPassword(password);
 
             var newUser = new User
             {
-                Id = _users.Max(u => u.Id) + 1,
                 Email = email,
                 PasswordHash = hashed,
                 Role = "User",
                 CreatedAt = DateTime.UtcNow
             };
 
-            _users.Add(newUser);
-            return Task.FromResult(true);
+            _context.Users.Add(newUser);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
+        public async Task<User?> GetUserByEmailAsync(string email)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+        }
     }
 }

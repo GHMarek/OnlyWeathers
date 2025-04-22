@@ -45,7 +45,8 @@ namespace OnlyWeathersApi.Services
                     Description = root.GetProperty("weather")[0].GetProperty("description").GetString() ?? "unknown",
                     Temperature = root.GetProperty("main").GetProperty("temp").GetDouble(),
                     Humidity = root.GetProperty("main").GetProperty("humidity").GetInt32(),
-                    WindSpeed = root.GetProperty("wind").GetProperty("speed").GetDouble()
+                    WindSpeed = root.GetProperty("wind").GetProperty("speed").GetDouble(),
+                    Icon = root.GetProperty("weather")[0].GetProperty("icon").GetString() ?? ""
                 };
             }
             catch (Exception ex)

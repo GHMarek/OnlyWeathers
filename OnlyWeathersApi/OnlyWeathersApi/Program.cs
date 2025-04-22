@@ -4,6 +4,9 @@ using OnlyWeathersApi.Services;
 using System.Text;
 using Microsoft.OpenApi.Models;
 using OnlyWeathersAPI.Services;
+using OnlyWeathersApi.Data;
+using Microsoft.EntityFrameworkCore;
+using OnlyWeathersApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -44,29 +47,36 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowVueApp", policy =>
+    options.AddPolicy("AllowAll", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
+        policy.AllowAnyOrigin()
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
 });
 
 
-var jwtSettings = builder.Configuration.GetSection("Jwt");
-var secretKey = jwtSettings["Key"];
+
+// Dodanie SQLite jako bazy danych
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite("Data Source=onlyweathers.db"));
+
+var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
+var secretKey = jwtSettings.SecretKey;
 
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    var secretKey = jwtSettings.SecretKey;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
+
 .AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
-        ValidIssuer = jwtSettings["Issuer"],
+        ValidIssuer = jwtSettings.Issuer,
         ValidateAudience = false,
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey!)),
@@ -77,6 +87,9 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddHttpClient<IWeatherService, WeatherService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+builder.Services.AddHttpClient<ICountryService, CountryService>();
+
 
 var app = builder.Build();
 
@@ -85,7 +98,7 @@ app.UseSwaggerUI();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseCors("AllowVueApp");
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 
