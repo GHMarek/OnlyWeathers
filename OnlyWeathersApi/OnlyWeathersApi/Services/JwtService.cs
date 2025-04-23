@@ -30,6 +30,7 @@ namespace OnlyWeathersApi.Services
 
             var token = new JwtSecurityToken(
                 claims: claims,
+                issuer: _jwtSettings.Issuer,
                 expires: DateTime.UtcNow.AddHours(2),
                 signingCredentials: creds);
 

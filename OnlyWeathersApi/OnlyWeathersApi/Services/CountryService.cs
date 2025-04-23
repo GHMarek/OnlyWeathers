@@ -5,15 +5,20 @@ namespace OnlyWeathersApi.Services
     public class CountryService : ICountryService
     {
         private readonly HttpClient _httpClient;
-        public CountryService(HttpClient httpClient)
+        private readonly IConfiguration _config;
+
+        public CountryService(HttpClient httpClient, IConfiguration config)
         {
             _httpClient = httpClient;
+            _config = config;
         }
+
         public async Task<List<(string Capital, string Country, string Flag, string CountryCode)>> GetCapitalCitiesAsync()
         {
-            var countries = await _httpClient.GetFromJsonAsync<List<CountryResponse>>("https://restcountries.com/v3.1/all");
+            var baseUrl = _config["RestCountries:BaseUrl"];
+            var countries = await _httpClient.GetFromJsonAsync<List<CountryResponse>>($"{baseUrl}/all");
 
-            return countries
+            return countries!
                 .Where(c => c.Capital != null && c.Capital.Any())
                 .Select(c => (
                     Capital: c.Capital.First(),
@@ -24,14 +29,12 @@ namespace OnlyWeathersApi.Services
                 .ToList();
         }
 
-        // Tylko europa dla optymalizacji
         public async Task<List<(string Capital, string Country, string Flag, string CountryCode)>> GetCapitalCitiesEuropeAsync()
         {
-            var countries = await _httpClient.GetFromJsonAsync<List<CountryResponse>>(
-                "https://restcountries.com/v3.1/region/europe" // tylko Europa!
-            );
+            var baseUrl = _config["RestCountries:BaseUrl"];
+            var countries = await _httpClient.GetFromJsonAsync<List<CountryResponse>>($"{baseUrl}/region/europe");
 
-            return countries
+            return countries!
                 .Where(c => c.Capital != null && c.Capital.Any())
                 .Select(c => (
                     Capital: c.Capital.First(),
@@ -41,6 +44,7 @@ namespace OnlyWeathersApi.Services
                 ))
                 .ToList();
         }
+
 
         public class CountryResponse
         {

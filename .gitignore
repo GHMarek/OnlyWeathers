@@ -10,3 +10,5 @@ OnlyWeathersGUI/dist/
 # systemowe
 .env
 .DS_Store
+
+appsettings.json

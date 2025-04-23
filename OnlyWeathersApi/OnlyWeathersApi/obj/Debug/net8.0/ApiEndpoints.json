@@ -89,6 +89,48 @@
   },
   {
     "ContainingType": "OnlyWeathersAPI.Controllers.UsersController",
+    "Method": "SearchCities",
+    "RelativePath": "api/Users/cities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlyWeathersAPI.Controllers.UsersController",
+    "Method": "GetFavoriteCitiesWeather",
+    "RelativePath": "api/Users/favorites",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlyWeathersAPI.Controllers.UsersController",
+    "Method": "AddFavoriteCity",
+    "RelativePath": "api/Users/favorites",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cityName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlyWeathersAPI.Controllers.UsersController",
     "Method": "ChangePassword",
     "RelativePath": "api/Users/password",
     "HttpMethod": "PUT",

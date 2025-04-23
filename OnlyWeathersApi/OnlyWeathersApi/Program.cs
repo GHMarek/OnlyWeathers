@@ -49,9 +49,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
+        policy.WithOrigins("http://localhost:5173", "http://localhost:5255")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials();
     });
 });
 
@@ -89,17 +90,16 @@ builder.Services.AddHttpClient<IWeatherService, WeatherService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 builder.Services.AddHttpClient<ICountryService, CountryService>();
-
+builder.Services.AddScoped<IWeatherService, WeatherService>();
+builder.Services.AddScoped<IGeoDbService, GeoDbService>();
 
 var app = builder.Build();
 
+app.UseRouting();
+app.UseCors("AllowAll");
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseAuthentication();
-app.UseAuthorization();
-
-app.UseCors("AllowAll");
-
 app.UseAuthorization();
 
 app.MapControllers();

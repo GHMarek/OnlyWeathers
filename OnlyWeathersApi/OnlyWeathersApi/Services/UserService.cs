@@ -57,11 +57,30 @@ namespace OnlyWeathersAPI.Services
             await _context.SaveChangesAsync();
             return true;
         }
+        public async Task<bool> AddFavoriteCityAsync(string email, string cityName)
+        {
+            var user = await _context.Users
+                .Include(u => u.FavoriteCities)
+                .FirstOrDefaultAsync(u => u.Email == email);
+
+            if (user == null)
+                return false;
+
+            // Sprawdź czy już istnieje
+            if (user.FavoriteCities.Any(fc => fc.CityName == cityName))
+                return false;
+
+            user.FavoriteCities.Add(new FavoriteCity { CityName = cityName });
+            await _context.SaveChangesAsync();
+            return true;
+        }
 
 
         public async Task<User?> GetUserByEmailAsync(string email)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
+
+
     }
 }
