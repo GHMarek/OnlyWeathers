@@ -1,12 +1,15 @@
 <template>
   <div class="container">
+    <!-- LEFT PANEL -->
     <div class="left">
       <h1>OnlyWeathers ☁️</h1>
       <div class="card">
         <h2>Login</h2>
-        <input v-model="email" type="email" placeholder="Email" />
-        <input v-model="password" type="password" placeholder="Password" />
-        <button @click="loginUser">Confirm</button>
+        <form @submit.prevent="loginUser">
+          <input v-model="email" type="email" placeholder="Email" required />
+          <input v-model="password" type="password" placeholder="Password" required />
+          <button type="submit">Confirm</button>
+        </form>
         <p v-if="error">{{ error }}</p>
         <div class="links">
           <router-link to="/register">Register</router-link>
@@ -18,13 +21,16 @@
 
     <div class="right">
       <h2>🌍 Random weather 🌍</h2>
-      <div class="weather-grid">
+      <div v-if="isLoading" class="loading">
+        <div class="spinner"></div>
+        <p>Loading weather data...</p>
+      </div>
+      <div v-else class="weather-grid">
         <div v-for="(item, index) in weatherList" :key="index" class="weather-card">
-          
           <!-- Country + Flag -->
           <div class="weather-column">
             <div class="country">
-              <img :src="`https://flagcdn.com/w40/${item.countryCode.toLowerCase()}.png`" alt="flag" class="flag-icon" />
+              <img :src="item.flag" alt="flag" class="flag-icon" />
               {{ item.country }}
             </div>
           </div>
@@ -36,23 +42,17 @@
 
           <!-- Weather Icon + Description + Temp -->
           <div class="weather-column">
-            <img 
-              :src="`http://openweathermap.org/img/wn/${item.icon}@2x.png`" 
-              :alt="item.description" 
-              class="weather-icon" 
-            />
+            <img :src="item.icon" alt="weather icon" class="weather-icon" />
             <div class="weather-details">
               <div>{{ item.description }}</div>
               <div class="temperature">{{ item.temperature }}°C</div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   </div>
 </template>
-
 
 
 <script setup>
@@ -69,17 +69,19 @@ const error = ref('')
 const router = useRouter()
 
 const weatherList = ref([])
+const isLoading = ref(true)
 
 onMounted(async () => {
-
   try {
     const response = await api.get('/api/public-weather')
-    console.log('Weather response:', response.data)
     weatherList.value = response.data
   } catch (error) {
     console.error('Error fetching public weather:', error)
+  } finally {
+    isLoading.value = false // zawsze ustawiamy loading na false na końcu
   }
 })
+
 
 const loginUser = async () => {
   try {
@@ -113,6 +115,7 @@ const loginUser = async () => {
   align-items: center;
   justify-content: flex-start; 
   gap: 2rem;
+  margin-right: 2rem;
 }
 
 .card {
@@ -128,6 +131,7 @@ const loginUser = async () => {
 
 .right {
   flex: 1;
+  margin-right: 2rem;
 }
 
 .weather-grid {
@@ -189,5 +193,24 @@ const loginUser = async () => {
   color: #05ff1a;
 }
 
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
 
+.spinner {
+  border: 4px solid #2e2e2e;
+  border-top: 4px solid #4caf50;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 </style>

@@ -19,42 +19,29 @@ namespace OnlyWeathersApi.Services
         {
             var apiKey = _config["OpenWeather:ApiKey"];
             var baseUrl = _config["OpenWeather:BaseUrl"];
-            // W url decydujemy o jezyku i systemie miar
             var url = $"{baseUrl}weather?q={city}&appid={apiKey}&units=metric&lang=en";
 
-            Console.WriteLine($"Request: {url}");
-
             var response = await _httpClient.GetAsync(url);
-
             if (!response.IsSuccessStatusCode)
-            {
-                var error = await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"OpenWeather ERROR: {response.StatusCode} {error}");
                 return null;
-            }
 
             var json = await response.Content.ReadAsStringAsync();
             using var doc = JsonDocument.Parse(json);
             var root = doc.RootElement;
 
-            try
+            var weatherElement = root.GetProperty("weather")[0]; // pobranie pierwszego obiektu weather
+
+            return new WeatherDto
             {
-                return new WeatherDto
-                {
-                    City = root.GetProperty("name").GetString() ?? city,
-                    Description = root.GetProperty("weather")[0].GetProperty("description").GetString() ?? "unknown",
-                    Temperature = root.GetProperty("main").GetProperty("temp").GetDouble(),
-                    Humidity = root.GetProperty("main").GetProperty("humidity").GetInt32(),
-                    WindSpeed = root.GetProperty("wind").GetProperty("speed").GetDouble(),
-                    Icon = root.GetProperty("weather")[0].GetProperty("icon").GetString() ?? ""
-                };
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error parsing weather data: {ex.Message}");
-                return null;
-            }
+                City = root.GetProperty("name").GetString() ?? city,
+                Description = weatherElement.GetProperty("description").GetString() ?? "unknown",
+                Temperature = root.GetProperty("main").GetProperty("temp").GetDouble(),
+                Humidity = root.GetProperty("main").GetProperty("humidity").GetInt32(),
+                WindSpeed = root.GetProperty("wind").GetProperty("speed").GetDouble(),
+                Icon = $"http://openweathermap.org/img/wn/{weatherElement.GetProperty("icon").GetString()}@2x.png" // PEŁNY URL
+            };
         }
+
 
     }
 }

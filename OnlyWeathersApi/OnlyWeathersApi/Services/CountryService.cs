@@ -39,7 +39,7 @@ namespace OnlyWeathersApi.Services
                 .Select(c => (
                     Capital: c.Capital.First(),
                     Country: c.Name.Common,
-                    Flag: c.Flags.Png,
+                    Flag: $"https://flagcdn.com/w40/{c.Cca2.ToLower()}.png",
                     CountryCode: c.Cca2
                 ))
                 .ToList();
