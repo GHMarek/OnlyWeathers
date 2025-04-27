@@ -20,7 +20,7 @@ namespace OnlyWeathersApi.Services
             var apiKey = _config["GeoDb:ApiKey"];
             var apiHost = _config["GeoDb:ApiHost"];
 
-            var request = new HttpRequestMessage(HttpMethod.Get, $"{baseUrl}/cities?namePrefix={query}&limit=10");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{baseUrl}/cities?namePrefix={query}&types=CITY&limit=10");
 
             request.Headers.Add("X-RapidAPI-Key", apiKey);
             request.Headers.Add("X-RapidAPI-Host", apiHost);

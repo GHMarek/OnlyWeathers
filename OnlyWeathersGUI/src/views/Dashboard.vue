@@ -30,13 +30,28 @@
   
       <div class="right">
         <h2>Add a City</h2>
+
         <input v-model="search" @input="searchCities" placeholder="Type city name..." />
+
         <ul v-if="suggestions.length > 0" class="suggestions">
-          <li v-for="city in suggestions" :key="city" @click="addFavorite(city)">
-            {{ city }}
+          <li 
+            v-for="city in suggestions" 
+            :key="city.city" 
+            @click="selectCity(city)"
+          >
+            {{ city.city }}, {{ city.country }}
           </li>
         </ul>
+
+        <button 
+          v-if="search.trim().length > 0" 
+          @click="addFavorite(search)" 
+          class="add-btn"
+        >
+          Add to favorites
+        </button>
       </div>
+
     </div>
   </template>
   
@@ -48,7 +63,7 @@
   const search = ref('')
   const suggestions = ref([])
   
-  const token = localStorage.getItem('token') // token zaciągany raz
+  const token = localStorage.getItem('token')
   
   const loadFavorites = async () => {
     try {
@@ -76,9 +91,10 @@
     }
   }
   
-  const addFavorite = async (city) => {
+  const addFavorite = async (cityName) => {
+    if (!cityName) return
     try {
-      await api.post('/api/users/favorites', { cityName: city }, {
+      await api.post('/api/users/favorites', { cityName }, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -93,6 +109,11 @@
   }
   
   onMounted(loadFavorites)
+
+  const selectCity = (city) => {
+    search.value = city.city;
+    suggestions.value = [];
+  };
   </script>
   
   <style scoped>
@@ -173,6 +194,20 @@
   
   .suggestions li:hover {
     background-color: #444;
+  }
+  .add-btn {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #6bdee2;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .add-btn:hover {
+    background-color: #6bdee2;
   }
   </style>
   

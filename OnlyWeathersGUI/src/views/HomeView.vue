@@ -78,7 +78,7 @@ onMounted(async () => {
   } catch (error) {
     console.error('Error fetching public weather:', error)
   } finally {
-    isLoading.value = false // zawsze ustawiamy loading na false na końcu
+    isLoading.value = false
   }
 })
 
@@ -135,10 +135,11 @@ const loginUser = async () => {
 }
 
 .weather-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   gap: 1rem;
 }
+
 
 .weather-card {
   background-color: #2e2e2e;
