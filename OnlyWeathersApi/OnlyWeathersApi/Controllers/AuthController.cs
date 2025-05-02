@@ -19,7 +19,7 @@ namespace OnlyWeathersApi.Controllers
             _userService = userService;
         }
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginDto request)
         {
             var user = await _userService.GetUserByEmailAsync(request.Email);
 

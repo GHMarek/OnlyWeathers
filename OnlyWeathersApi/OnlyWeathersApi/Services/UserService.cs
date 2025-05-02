@@ -9,11 +9,14 @@ namespace OnlyWeathersAPI.Services
     public class UserService : IUserService
     {
         private readonly AppDbContext _context;
+        private readonly IGeoDbService _geoDbService;
 
-        public UserService(AppDbContext context)
+        public UserService(AppDbContext context, IGeoDbService geoDbService)
         {
             _context = context;
+            _geoDbService = geoDbService;
         }
+
 
         public async Task<bool> ChangePasswordAsync(string email, string currentPassword, string newPassword)
         {
@@ -57,28 +60,12 @@ namespace OnlyWeathersAPI.Services
             await _context.SaveChangesAsync();
             return true;
         }
-        public async Task<bool> AddFavoriteCityAsync(string email, string cityName)
-        {
-            var user = await _context.Users
-                .Include(u => u.FavoriteCities)
-                .FirstOrDefaultAsync(u => u.Email == email);
-
-            if (user == null)
-                return false;
-
-            // Sprawdź czy już istnieje
-            if (user.FavoriteCities.Any(fc => fc.CityName == cityName))
-                return false;
-
-            user.FavoriteCities.Add(new FavoriteCity { CityName = cityName });
-            await _context.SaveChangesAsync();
-            return true;
-        }
-
 
         public async Task<User?> GetUserByEmailAsync(string email)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            return await _context.Users
+                .Include(u => u.FavoriteCities)
+                .FirstOrDefaultAsync(u => u.Email == email);
         }
 
 

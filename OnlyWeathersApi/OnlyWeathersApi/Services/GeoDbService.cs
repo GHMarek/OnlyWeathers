@@ -34,12 +34,16 @@ namespace OnlyWeathersApi.Services
             var data = doc.RootElement.GetProperty("data");
 
             return data.EnumerateArray()
-                .Select(c => new CityDto
-                {
-                    City = c.GetProperty("city").GetString() ?? "",
-                    Country = c.GetProperty("country").GetString() ?? ""
-                })
-                .ToList();
+            .Select(c => new CityDto
+            {
+                City = c.GetProperty("city").GetString() ?? "",
+                Country = c.GetProperty("country").GetString() ?? "",
+                CountryCode = c.GetProperty("countryCode").GetString() ?? "",
+                Region = c.TryGetProperty("region", out var regionProp) ? regionProp.GetString() ?? "" : "",
+                Latitude = c.GetProperty("latitude").GetDouble(),
+                Longitude = c.GetProperty("longitude").GetDouble()
+            })
+            .ToList();
         }
 
     }

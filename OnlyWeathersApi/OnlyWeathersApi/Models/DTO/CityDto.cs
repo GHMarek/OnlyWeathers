@@ -2,8 +2,12 @@
 {
     public class CityDto
     {
-        public string City { get; set; } = null!;
-        public string Country { get; set; } = null!;
+        public string City { get; set; } = string.Empty;
+        public string Country { get; set; } = string.Empty;
+        public string CountryCode { get; set; } = string.Empty;
+        public string Region { get; set; } = string.Empty;  // NOWE
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
     }
 
 }

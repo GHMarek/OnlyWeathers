@@ -5,10 +5,12 @@
       <h1>OnlyWeathers ☁️</h1>
       <div class="card">
         <h2>Login</h2>
-        <form @submit.prevent="loginUser">
+        <form @submit.prevent="loginUser" class="form-group">
           <input v-model="email" type="email" placeholder="Email" required />
           <input v-model="password" type="password" placeholder="Password" required />
-          <button type="submit">Confirm</button>
+          <div class="button-container">
+            <button type="submit">Confirm</button>
+          </div>
         </form>
         <p v-if="error">{{ error }}</p>
         <div class="links">
@@ -210,6 +212,18 @@ const loginUser = async () => {
   height: 40px;
   animation: spin 1s linear infinite;
 }
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
 
 @keyframes spin {
   to { transform: rotate(360deg); }

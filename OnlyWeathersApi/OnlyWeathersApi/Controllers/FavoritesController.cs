@@ -1,90 +1,81 @@
-﻿using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OnlyWeathersApi.Data;
-using OnlyWeathersApi.Models.DTO;
-using OnlyWeathersApi.Models;
 using Microsoft.EntityFrameworkCore;
+using OnlyWeathersApi.Data;
+using OnlyWeathersApi.Models;
+using OnlyWeathersApi.Models.DTO;
+using OnlyWeathersApi.Services;
+using System.Security.Claims;
 
 namespace OnlyWeathersApi.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     [Authorize]
     public class FavoritesController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly IFavoriteService _favoriteService;
+        private readonly IGeoDbService _geoDbService;
 
-        public FavoritesController(AppDbContext context)
+        public FavoritesController(IFavoriteService favoriteService, IGeoDbService geoDbService)
         {
-            _context = context;
+            _favoriteService = favoriteService;
+            _geoDbService = geoDbService;
         }
 
-        // GET /api/favorites
+        [HttpGet("weather")]
+        public async Task<IActionResult> GetWeather()
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var result = await _favoriteService.GetFavoriteWeatherAsync(userId);
+            return Ok(result);
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetFavorites()
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-
-            var favorites = await _context.FavoriteCities
-                .Where(f => f.UserId == userId)
-                .Select(f => new FavoriteCityDto
-                {
-                    Id = f.Id,
-                    CityName = f.CityName,
-                    CountryCode = f.CountryCode,
-                    Latitude = f.Latitude,
-                    Longitude = f.Longitude
-                })
-                .ToListAsync();
-
-            return Ok(favorites);
+            var result = await _favoriteService.GetFavoritesAsync(userId);
+            return Ok(result);
         }
 
-        // POST /api/favorites
         [HttpPost]
-        public async Task<IActionResult> AddFavorite([FromBody] FavoriteCityDto dto)
+        public async Task<IActionResult> AddFavorite([FromBody] AddFavoriteDto request)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var (success, error) = await _favoriteService.AddFavoriteAsync(userId, request.CityName);
 
-            // limit 10 miast
-            var count = await _context.FavoriteCities.CountAsync(f => f.UserId == userId);
-            if (count >= 10)
-                return BadRequest("You can have a maximum of 10 favorite cities.");
-
-            var favorite = new FavoriteCity
-            {
-                CityName = dto.CityName,
-                CountryCode = dto.CountryCode,
-                Latitude = dto.Latitude,
-                Longitude = dto.Longitude,
-                UserId = userId
-            };
-
-            _context.FavoriteCities.Add(favorite);
-            await _context.SaveChangesAsync();
+            if (!success)
+                return BadRequest(error);
 
             return Ok("City added to favorites.");
         }
 
-        // DELETE /api/favorites/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFavorite(int id)
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var success = await _favoriteService.DeleteFavoriteAsync(userId, id);
 
-            var favorite = await _context.FavoriteCities
-                .FirstOrDefaultAsync(f => f.Id == id && f.UserId == userId);
+            return success ? Ok("City removed from favorites.") : NotFound();
+        }
 
-            if (favorite == null)
-                return NotFound();
+        [HttpPut("{id}/alias")]
+        public async Task<IActionResult> UpdateAlias(int id, [FromBody] AliasUpdateDto dto)
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var success = await _favoriteService.UpdateAliasAsync(userId, id, dto.Alias);
 
-            _context.FavoriteCities.Remove(favorite);
-            await _context.SaveChangesAsync();
+            return success ? Ok() : BadRequest("Could not update alias.");
+        }
 
-            return Ok("City removed from favorites.");
+
+        [HttpGet("cities")]
+        public async Task<IActionResult> SearchCities([FromQuery] string query)
+        {
+            var result = await _geoDbService.SearchCitiesAsync(query);
+            return Ok(result);
         }
     }
-}
 
+}

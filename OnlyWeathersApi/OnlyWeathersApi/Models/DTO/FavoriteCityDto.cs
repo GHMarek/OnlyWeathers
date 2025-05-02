@@ -7,5 +7,6 @@
         public string CountryCode { get; set; } = null!;
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public string? Alias { get; set; }
     }
 }

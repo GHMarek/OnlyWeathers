@@ -21,7 +21,6 @@ namespace OnlyWeathersApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetRandomWeather()
         {
-            // TODO: pobranie państw z api trwa za długo, normalnie zrobiłbym cache z większością informacji.
             var capitals = await _countryService.GetCapitalCitiesEuropeAsync();
             var randomCapitals = capitals.OrderBy(_ => Guid.NewGuid()).Take(countryCount).ToList();
 

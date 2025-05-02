@@ -1,6 +1,6 @@
 ﻿namespace OnlyWeathersApi.Models.DTO
 {
-    public class LoginRequest
+    public class RegisterDto
     {
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
