@@ -5,6 +5,9 @@ using OnlyWeathersApi.Models.DTO;
 
 namespace OnlyWeathersApi.Services
 {
+    /// <summary>
+    /// Serwis do zarządzania ulubionymi miastami użytkownika
+    /// </summary>
     public class FavoriteService : IFavoriteService
     {
         private readonly AppDbContext _context;
@@ -18,6 +21,11 @@ namespace OnlyWeathersApi.Services
             _weatherService = weatherService;
         }
 
+        /// <summary>
+        /// Zwraca pogodę dla ulubionych miast użytkownika
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public async Task<List<WeatherDto>> GetFavoriteWeatherAsync(int userId)
         {
             var favorites = await _context.FavoriteCities
@@ -44,6 +52,11 @@ namespace OnlyWeathersApi.Services
             return result;
         }
 
+        /// <summary>
+        /// Zwraca listę ulubionych miast użytkownika
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public async Task<List<FavoriteCityDto>> GetFavoritesAsync(int userId)
         {
             return await _context.FavoriteCities
@@ -59,6 +72,12 @@ namespace OnlyWeathersApi.Services
                 .ToListAsync();
         }
 
+        /// <summary>
+        /// Dodaje nowe miasto do ulubionych
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="cityName"></param>
+        /// <returns></returns>
         public async Task<(bool Success, string? Error)> AddFavoriteAsync(int userId, string cityName)
         {
             var user = await _context.Users
@@ -90,6 +109,12 @@ namespace OnlyWeathersApi.Services
             return (true, null);
         }
 
+        /// <summary>
+        /// Usuwa ulubione miasto użytkownika
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="favoriteId"></param>
+        /// <returns></returns>
         public async Task<bool> DeleteFavoriteAsync(int userId, int favoriteId)
         {
             var fav = await _context.FavoriteCities
@@ -102,6 +127,13 @@ namespace OnlyWeathersApi.Services
             return true;
         }
 
+        /// <summary>
+        /// Aktualizuje alias ulubionego miasta
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="favoriteId"></param>
+        /// <param name="alias"></param>
+        /// <returns></returns>
         public async Task<bool> UpdateAliasAsync(int userId, int favoriteId, string alias)
         {
             var fav = await _context.FavoriteCities

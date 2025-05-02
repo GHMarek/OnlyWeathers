@@ -1,6 +1,10 @@
 # .NET
 OnlyWeathersAPI/bin/
 OnlyWeathersAPI/obj/
+OnlyWeathersApi/OnlyWeathersApi.Tests/bin/
+OnlyWeathersApi/OnlyWeathersApi.Tests/bin/
+**/bin/
+**/obj/
 
 # Node/Vue
 OnlyWeathersGUI/node_modules/
@@ -11,4 +15,5 @@ OnlyWeathersGUI/dist/
 .env
 .DS_Store
 
+# Konfiguracje lokalne
 appsettings.json

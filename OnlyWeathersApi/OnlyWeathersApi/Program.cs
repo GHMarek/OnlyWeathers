@@ -1,24 +1,28 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using OnlyWeathersApi.Services;
-using System.Text;
-using Microsoft.OpenApi.Models;
-using OnlyWeathersAPI.Services;
-using OnlyWeathersApi.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using OnlyWeathersApi.Data;
 using OnlyWeathersApi.Models;
+using OnlyWeathersApi.Services;
+using OnlyWeathersAPI.Services; // Upewnij siê, ¿e potrzebne – mo¿e byæ powielone
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// ---------------------------------------------
+// 1. Kontrolery i Swagger
+// ---------------------------------------------
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
 
-// Testowanie JWT w Swagger
+// Konfiguracja Swaggera z obs³ug¹ JWT
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "OnlyWeathers API", Version = "v1" });
 
-    // Konfiguracja autoryzacji JWT
+    // Definicja schematu bezpieczeñstwa JWT w Swaggerze
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -45,64 +49,85 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+// ---------------------------------------------
+// 2. CORS – zezwolenie na dostêp z frontendu
+// ---------------------------------------------
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.WithOrigins("http://localhost:5173", "http://localhost:5255")
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials();
+        policy.WithOrigins("http://localhost:5173", "http://localhost:5255") // frontend lokalny (np. React/Vite/Blazor)
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
     });
 });
 
+// ---------------------------------------------
+// 3. Baza danych (SQLite)
+// ---------------------------------------------
 
-
-// Dodanie SQLite jako bazy danych
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=onlyweathers.db"));
 
+// ---------------------------------------------
+// 4. JWT – konfiguracja uwierzytelniania
+// ---------------------------------------------
+
 var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
-var secretKey = jwtSettings.SecretKey;
+var secretKey = jwtSettings!.SecretKey;
+
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    var secretKey = jwtSettings.SecretKey;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-
 .AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
         ValidIssuer = jwtSettings.Issuer,
-        ValidateAudience = false,
+        ValidateAudience = false, // brak audytorium – niepotrzebne w tej aplikacji
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey!)),
-        ValidateLifetime = true
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+        ValidateLifetime = true // wa¿noœæ tokena
     };
 });
 
+// ---------------------------------------------
+// 5. Rejestracja serwisów i klientów HTTP
+// ---------------------------------------------
+
 builder.Services.AddScoped<JwtService>();
-builder.Services.AddHttpClient<IWeatherService, WeatherService>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
-builder.Services.AddHttpClient<ICountryService, CountryService>();
-builder.Services.AddScoped<IWeatherService, WeatherService>();
-builder.Services.AddScoped<IGeoDbService, GeoDbService>();
 builder.Services.AddScoped<IFavoriteService, FavoriteService>();
+builder.Services.AddScoped<IGeoDbService, GeoDbService>();
+//builder.Services.AddScoped<IWeatherService, WeatherService>();
+
+builder.Services.AddHttpClient<IWeatherService, WeatherService>();
+builder.Services.AddHttpClient<ICountryService, CountryService>();
+
+// ---------------------------------------------
+// 6. Budowa i konfiguracja aplikacji
+// ---------------------------------------------
 
 var app = builder.Build();
 
 app.UseRouting();
 app.UseCors("AllowAll");
+
 app.UseSwagger();
-app.UseSwaggerUI();
-app.UseAuthentication();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "OnlyWeathers API v1");
+});
+
+app.UseAuthentication(); // musi byæ przed Authorization
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.Run();

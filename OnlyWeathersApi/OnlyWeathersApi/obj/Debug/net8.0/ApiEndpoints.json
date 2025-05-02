@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "OnlyWeathersApi.Models.DTO.LoginRequest",
+        "Type": "OnlyWeathersApi.Models.DTO.LoginDto",
         "IsRequired": true
       }
     ],
@@ -35,7 +35,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "OnlyWeathersApi.Models.DTO.AddFavoriteRequest",
+        "Type": "OnlyWeathersApi.Models.DTO.AddFavoriteDto",
         "IsRequired": true
       }
     ],
@@ -144,7 +144,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "OnlyWeathersApi.Models.DTO.ChangePasswordRequest",
+        "Type": "OnlyWeathersApi.Models.DTO.ChangePasswordDto",
         "IsRequired": true
       }
     ],
@@ -160,23 +160,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "OnlyWeathersApi.Models.DTO.RegisterRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "OnlyWeathersApi.Controllers.WeatherController",
-    "Method": "GetWeather",
-    "RelativePath": "api/Weather/{city}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "city",
-        "Type": "System.String",
+        "Type": "OnlyWeathersApi.Models.DTO.RegisterDto",
         "IsRequired": true
       }
     ],

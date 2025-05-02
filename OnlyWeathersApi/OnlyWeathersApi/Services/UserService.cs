@@ -6,6 +6,9 @@ using OnlyWeathersApi.Services;
 
 namespace OnlyWeathersAPI.Services
 {
+    /// <summary>
+    /// Serwis do zarządzania funkcjami użytkownika
+    /// </summary>
     public class UserService : IUserService
     {
         private readonly AppDbContext _context;
@@ -17,18 +20,30 @@ namespace OnlyWeathersAPI.Services
             _geoDbService = geoDbService;
         }
 
-
+        /// <summary>
+        /// Zmienia hasło użytkownika
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="currentPassword"></param>
+        /// <param name="newPassword"></param>
+        /// <returns></returns>
         public async Task<bool> ChangePasswordAsync(string email, string currentPassword, string newPassword)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (user == null || !BCrypt.Net.BCrypt.Verify(currentPassword, user.PasswordHash))
                 return false;
 
-            user.                                       PasswordHash = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(newPassword);
             await _context.SaveChangesAsync();
             return true;
         }
 
+        /// <summary>
+        /// Rejestruje nowego użytkownika
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public async Task<bool> RegisterAsync(string email, string password)
         {
             // Walidacja emaila
@@ -61,6 +76,11 @@ namespace OnlyWeathersAPI.Services
             return true;
         }
 
+        /// <summary>
+        /// Pobiera użytkownika na podstawie adresu email
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public async Task<User?> GetUserByEmailAsync(string email)
         {
             return await _context.Users

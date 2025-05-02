@@ -1,99 +1,159 @@
 <template>
-  <div>
-    <h1 class="logo">OnlyWeathers ☁️</h1>
+  <div class="container">
+    <!-- LEWA KOLUMNA – lista ulubionych -->
+    <div class="left">
+      <div class="card">
+        <h2>Your Favorite Cities</h2>
 
-    <div class="topbar">
-      <div class="user-info">Logged in as: {{ email }}</div>
-      <router-link to="/change-password" class="change-link">Change Password</router-link>
-    </div>
+        <!-- Pokazuje spinner podczas ładowania danych z API -->
+        <div v-if="isLoading" class="loading">
+          <div class="spinner"></div>
+          <p>Loading your favorite weather data...</p>
+        </div>
 
-    <div class="container">
-      <!-- LEFT PANEL -->
-      <div class="left">
-        <div class="card">
-          <h2>Your Favorite Cities</h2>
-          <div v-if="weatherList.length === 0">
-            <p>No favorite cities yet.</p>
-          </div>
-          <div v-else>
-            <div v-for="(item, index) in weatherList" :key="index" class="weather-card">
-              <!-- Kolumna: Ikona i opis pogody -->
-              <div class="weather-column">
-                <img :src="item.icon || '/icons/no-data.png'" :alt="item.description || 'No data'" class="weather-icon" />
-                <div class="weather-details">
-                  <div>{{ item.description || 'No weather data' }}</div>
-                  <div class="temperature">{{ item.temperature !== null ? item.temperature + '°C' : '—' }}</div>
+        <!-- Gdy nie ma żadnych ulubionych miast -->
+        <div v-else-if="weatherList.length === 0">
+          <p>No favorite cities yet.</p>
+        </div>
+
+        <!-- Gdy są ulubione miasta z pogodą -->
+        <div v-else>
+          <!-- Iteracja po liście pogody dla ulubionych miast -->
+          <div v-for="(item, index) in weatherList" :key="index" class="weather-card">
+            
+            <!-- Kolumna z ikoną i szczegółami pogody -->
+            <div class="weather-column">
+              <img
+                :src="item.icon || '/icons/no-data.png'"
+                :alt="item.description || 'No data'"
+                class="weather-icon"
+              />
+              <div class="weather-details">
+                <!-- Opis warunków pogodowych -->
+                <div>{{ item.description || 'No weather data' }}</div>
+                <!-- Temperatura lub myślnik jeśli brak -->
+                <div class="temperature">
+                  {{ item.temperature !== null ? item.temperature.toFixed(1) + '°C' : '—' }}
                 </div>
-              </div>
-
-              <!-- Kolumna: Miasto i Alias -->
-              <div class="weather-column city-info">
-                <div class="city">
-                  <span v-if="item.alias" class="alias-strong">{{ item.alias }}</span>
-                  <span v-else>{{ item.city }}</span>
-                  <div v-if="item.alias" class="alias-original">({{ item.city }})</div>
-                </div>
-                <div v-if="editingId === item.id" class="edit-alias-form">
-                  <input v-model="editingAlias" class="alias-input" placeholder="Enter alias..." />
-                  <button class="save-btn" @click="submitAlias(item.id)">💾</button>
-                </div>
-              </div>
-
-              <!-- Kolumna: Przycisk edycji i usuwania -->
-              <div class="weather-column action-buttons">
-                <button class="edit-btn" @click="startEditing(item.id, item.alias)">✏️</button>
-                <button class="delete-btn" @click="deleteFavorite(item.id)">❌</button>
               </div>
             </div>
 
+            <!-- Kolumna z miastem i aliasem -->
+            <div class="weather-column city-info">
+              <div class="city">
+                <!-- Alias użytkownika, jeśli ustawiony -->
+                <span v-if="item.alias" class="alias-strong">{{ item.alias }}</span>
+                <!-- Nazwa miasta, jeśli brak aliasu -->
+                <span v-else>{{ item.city }}</span>
+                <!-- Oryginalna nazwa miasta w nawiasie (gdy alias istnieje) -->
+                <div v-if="item.alias" class="alias-original">({{ item.city }})</div>
+              </div>
+
+              <!-- Formularz zmiany aliasu, widoczny tylko gdy edytujemy ten wpis -->
+              <div v-if="editingId === item.id" class="edit-alias-form">
+                <input
+                  v-model="editingAlias"
+                  class="alias-input"
+                  placeholder="Enter alias..."
+                />
+                <button class="save-btn" @click="submitAlias(item.id)">💾</button>
+              </div>
+            </div>
+
+            <!-- Kolumna z przyciskami akcji: edytuj i usuń -->
+            <div class="weather-column action-buttons">
+              <!-- Przycisk edycji aliasu -->
+              <button class="edit-btn" @click="startEditing(item.id, item.alias)">✏️</button>
+              <!-- Przycisk usunięcia miasta z ulubionych -->
+              <button class="delete-btn" @click="deleteFavorite(item.id)">❌</button>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- RIGHT PANEL -->
-      <div class="right">
-        <h2>Add a City</h2>
-        <input v-model="search" @input="searchCities" placeholder="Type city name..." />
-        <ul v-if="suggestions.length > 0" class="suggestions">
-          <li v-for="city in suggestions" :key="city.city" @click="selectCity(city)">
-            {{ city.city }}, {{ city.region }} {{ city.country }}
-          </li>
-        </ul>
-        <button v-if="search.trim().length > 0" @click="addFavorite(search)" class="add-btn">
-          Add to favorites
-        </button>
-        <p v-if="errorMsg" class="error">{{ errorMsg }}</p>
-      </div>
+    <!-- PRAWA KOLUMNA – wyszukiwanie i dodawanie miast -->
+    <div class="right">
+      <h2>Add a City</h2>
+
+      <!-- Pole do wpisywania nazwy miasta -->
+      <input v-model="search" @input="searchCities" placeholder="Type city name..." autocomplete="off" />
+
+      <!-- Podpowiedzi miast z API -->
+      <ul v-if="suggestions.length > 0" class="suggestions">
+        <li
+          v-for="city in suggestions"
+          :key="city.city"
+          @click="selectCity(city)"
+        >
+          {{ city.city }}, {{ city.region }} {{ city.country }}
+        </li>
+      </ul>
+
+      <!-- Przycisk dodania miasta do ulubionych -->
+      <button
+        v-if="search.trim().length > 0"
+        @click="addFavorite(search)"
+        class="add-btn"
+      >
+        Add to favorites
+      </button>
+
+      <!-- Komunikat o błędzie (np. limit, duplikat) -->
+      <p v-if="errorMsg" class="error">{{ errorMsg }}</p>
     </div>
   </div>
 </template>
 
+
 <script setup>
 import { ref, onMounted } from 'vue'
 import api from '@/services/api'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
+// Zmienne do przechowywania stanu komponentu
+let debounceTimeout = null
+
+// Zmienne reaktywne (powiązane z danymi formularzy i odpowiedzi API)
 const errorMsg = ref('')
 const weatherList = ref([])
 const search = ref('')
 const suggestions = ref([])
 
-const currentPassword = ref('')
-const newPassword = ref('')
-const passwordMessage = ref('')
-
 const token = localStorage.getItem('token')
 
-const editingId = ref(null)
-const editingAlias = ref('')
+const editingId = ref(null) // ID miasta, którego alias edytujemy
+const editingAlias = ref('') // nowy alias
 
 const email = ref('')
+
+const isLoading = ref(true)
+
+
+
 onMounted(() => {
-  const jwt = JSON.parse(atob(token.split('.')[1]))
-  email.value = jwt['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']
-  loadFavorites()
+  const token = localStorage.getItem('token')
+  if (!token) {
+    router.push('/')
+    return
+  }
+
+  try {
+    const jwt = JSON.parse(atob(token.split('.')[1]))
+    email.value = jwt['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']
+    loadFavorites()
+  } catch (err) {
+    console.error('Invalid token', err)
+    router.push('/')
+  }
 })
 
+
+
+// Ładowanie ulubionych miast z pogodą
 const loadFavorites = async () => {
+  isLoading.value = true
   try {
     const response = await api.get('/api/favorites/weather', {
       headers: { Authorization: `Bearer ${token}` }
@@ -101,8 +161,13 @@ const loadFavorites = async () => {
     weatherList.value = response.data
   } catch (err) {
     console.error('Error loading favorites:', err)
+  } finally {
+    isLoading.value = false
   }
 }
+
+
+// Usuwanie ulubionego miasta
 const deleteFavorite = async (id) => {
   try {
     await api.delete(`/api/favorites/${id}`, {
@@ -114,21 +179,29 @@ const deleteFavorite = async (id) => {
   }
 }
 
-const searchCities = async () => {
-  if (search.value.length < 3) {
+// Szukanie miast po wpisaniu 3+ liter
+const searchCities = () => {
+  clearTimeout(debounceTimeout)
+
+  if (search.value.trim().length < 3) {
     suggestions.value = []
     return
   }
-  try {
-    const response = await api.get(`/api/favorites/cities?query=${search.value}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    suggestions.value = response.data
-  } catch (err) {
-    console.error('Error searching cities:', err)
-  }
+
+  debounceTimeout = setTimeout(async () => {
+    try {
+      const response = await api.get(`/api/favorites/cities?query=${search.value}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      suggestions.value = response.data
+    } catch (err) {
+      console.error('Error searching cities:', err)
+    }
+  }, 300)
 }
 
+
+// Dodanie miasta do ulubionych
 const addFavorite = async (cityName) => {
   if (!cityName) return
   try {
@@ -148,18 +221,19 @@ const addFavorite = async (cityName) => {
   }
 }
 
+// Kliknięcie podpowiedzi w liście
 const selectCity = (city) => {
   search.value = city.city
   suggestions.value = []
 }
 
-onMounted(loadFavorites)
-
+// Rozpoczęcie edycji aliasu
 const startEditing = (id, alias) => {
   editingId.value = id
   editingAlias.value = alias
 }
 
+// Zatwierdzenie aliasu
 const submitAlias = async (id) => {
   try {
     await updateAlias(id, editingAlias.value)
@@ -171,20 +245,21 @@ const submitAlias = async (id) => {
   }
 }
 
+// Wysłanie aliasu do API
 const updateAlias = async (id, alias) => {
   try {
     await api.put(`/api/favorites/${id}/alias`, { alias }, {
       headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    }
-   })
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    })
   } catch (err) {
     console.error('Error updating alias:', err)
   }
 }
-
 </script>
+
 
 <style scoped>
 .container {
@@ -395,6 +470,15 @@ const updateAlias = async (id, alias) => {
   display: flex;
   gap: 0.3rem;
   margin-top: 0.3rem;
+}
+
+.spinner {
+  border: 4px solid #2e2e2e;
+  border-top: 4px solid #4caf50;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
 }
 
 </style>

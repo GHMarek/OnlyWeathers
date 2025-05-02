@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlyWeathersApi", "OnlyWeathersApi\OnlyWeathersApi.csproj", "{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlyWeathersApi.Tests", "OnlyWeathersApi.Tests\OnlyWeathersApi.Tests.csproj", "{712801E5-1A1F-47FD-8DE6-2BCAF24C6807}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{712801E5-1A1F-47FD-8DE6-2BCAF24C6807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{712801E5-1A1F-47FD-8DE6-2BCAF24C6807}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{712801E5-1A1F-47FD-8DE6-2BCAF24C6807}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{712801E5-1A1F-47FD-8DE6-2BCAF24C6807}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

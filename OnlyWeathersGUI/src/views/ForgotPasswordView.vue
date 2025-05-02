@@ -1,9 +1,13 @@
 <template>
-    <div class="container">
-      <h1>Forgot Password?</h1>
-      <p>This feature is under construction 🚧</p>
-    </div>
-  </template>
+  <div class="container">
+    <!-- Nagłówek strony -->
+    <h1>Forgot Password?</h1>
+
+    <!-- Tymczasowy komunikat informacyjny -->
+    <p>This feature is under construction 🚧</p>
+  </div>
+</template>
+
   
   <style scoped>
   .container {

@@ -6,6 +6,9 @@ using System.Security.Claims;
 
 namespace OnlyWeathersApi.Controllers
 {
+    /// <summary>
+    /// Ten kontroler odpowiada za operacje związane z użytkownikami.
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
@@ -17,6 +20,12 @@ namespace OnlyWeathersApi.Controllers
             _userService = userService;
         }
 
+        /// <summary>
+        /// POST: api/users/register
+        /// Rejestracja nowego użytkownika
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto request)
         {
@@ -27,6 +36,12 @@ namespace OnlyWeathersApi.Controllers
             return Ok("User registered successfully.");
         }
 
+        /// <summary>
+        /// PUT: api/users/password
+        /// Zmiana hasła – tylko dla zalogowanego użytkownika
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPut("password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto request)

@@ -7,6 +7,9 @@ using System.Text;
 
 namespace OnlyWeathersApi.Services
 {
+    /// <summary>
+    /// Serwis do generowania tokenów JWT
+    /// </summary>
     public class JwtService
     {
         private readonly JwtSettings _jwtSettings;
@@ -16,6 +19,11 @@ namespace OnlyWeathersApi.Services
             _jwtSettings = jwtSettings.Value;
         }
 
+        /// <summary>
+        /// Generuje token JWT dla użytkownika
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public string GenerateToken(User user)
         {
             var claims = new[]

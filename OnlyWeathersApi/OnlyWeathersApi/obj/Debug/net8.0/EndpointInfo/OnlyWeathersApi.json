@@ -14,17 +14,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
+                "$ref": "#/components/schemas/LoginDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
+                "$ref": "#/components/schemas/LoginDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
+                "$ref": "#/components/schemas/LoginDto"
               }
             }
           }
@@ -67,17 +67,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddFavoriteRequest"
+                "$ref": "#/components/schemas/AddFavoriteDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddFavoriteRequest"
+                "$ref": "#/components/schemas/AddFavoriteDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AddFavoriteRequest"
+                "$ref": "#/components/schemas/AddFavoriteDto"
               }
             }
           }
@@ -220,17 +220,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterRequest"
+                "$ref": "#/components/schemas/RegisterDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterRequest"
+                "$ref": "#/components/schemas/RegisterDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterRequest"
+                "$ref": "#/components/schemas/RegisterDto"
               }
             }
           }
@@ -251,17 +251,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ChangePasswordRequest"
+                "$ref": "#/components/schemas/ChangePasswordDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ChangePasswordRequest"
+                "$ref": "#/components/schemas/ChangePasswordDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ChangePasswordRequest"
+                "$ref": "#/components/schemas/ChangePasswordDto"
               }
             }
           }
@@ -272,33 +272,11 @@
           }
         }
       }
-    },
-    "/api/Weather/{city}": {
-      "get": {
-        "tags": [
-          "Weather"
-        ],
-        "parameters": [
-          {
-            "name": "city",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
     }
   },
   "components": {
     "schemas": {
-      "AddFavoriteRequest": {
+      "AddFavoriteDto": {
         "type": "object",
         "properties": {
           "cityName": {
@@ -318,7 +296,7 @@
         },
         "additionalProperties": false
       },
-      "ChangePasswordRequest": {
+      "ChangePasswordDto": {
         "type": "object",
         "properties": {
           "currentPassword": {
@@ -332,7 +310,7 @@
         },
         "additionalProperties": false
       },
-      "LoginRequest": {
+      "LoginDto": {
         "type": "object",
         "properties": {
           "email": {
@@ -346,7 +324,7 @@
         },
         "additionalProperties": false
       },
-      "RegisterRequest": {
+      "RegisterDto": {
         "type": "object",
         "properties": {
           "email": {

@@ -3,6 +3,10 @@ using OnlyWeathersApi.Services;
 
 namespace OnlyWeathersApi.Controllers
 {
+    /// <summary>
+    ///  Lontroler udostępnia publiczny (bez autoryzacji) endpoint, 
+    ///  który zwraca pogodę w losowych stolicach europejskich państw.
+    /// </summary>
     [ApiController]
     [Route("api/public-weather")]
     public class PublicWeatherController : ControllerBase
@@ -17,13 +21,20 @@ namespace OnlyWeathersApi.Controllers
             _weatherService = weatherService;
             countryCount = 10;
         }
-
+        /// <summary>
+        /// GET: api/public-weather
+        /// Zwraca pogodę dla losowych stolic europejskich
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetRandomWeather()
         {
+            // Pobieramy listę europejskich stolic
             var capitals = await _countryService.GetCapitalCitiesEuropeAsync();
+            // Losujemy 10 unikalnych stolic
             var randomCapitals = capitals.OrderBy(_ => Guid.NewGuid()).Take(countryCount).ToList();
 
+            // Dla każdej stolicy asynchronicznie pobieramy pogodę
             var weatherTasks = randomCapitals.Select(async capital =>
             {
                 var (city, country, flag, countryCode) = capital;
@@ -46,9 +57,10 @@ namespace OnlyWeathersApi.Controllers
                 return null;
             });
 
-            var weatherResults = await Task.WhenAll(weatherTasks); // Odpalamy wszystkie zapytania równolegle
+            // Czekamy aż wszystkie zapytania do serwisu pogodowego się zakończą
+            var weatherResults = await Task.WhenAll(weatherTasks);
 
-            // Filtrujemy null-e i bierzemy tylko 10 pierwszych wyników z pogodą
+            // Filtrujemy null i ograniczamy wynik do 10 elementów
             var weatherList = weatherResults
                 .Where(x => x != null)
                 .Take(countryCount)

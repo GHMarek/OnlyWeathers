@@ -4,6 +4,9 @@ using OnlyWeathersApi.Models.DTO;
 
 namespace OnlyWeathersApi.Services
 {
+    /// <summary>
+    /// Serwis do pobierania danych pogodowych z OpenWeather
+    /// </summary>
     public class WeatherService : IWeatherService
     {
         private readonly HttpClient _httpClient;

@@ -9,6 +9,9 @@ using System.Security.Claims;
 
 namespace OnlyWeathersApi.Controllers
 {
+    /// <summary>
+    /// Kontroler odpowiadający za obsługę ulubionych miejsc użytkownika
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     [Authorize]
@@ -23,6 +26,11 @@ namespace OnlyWeathersApi.Controllers
             _geoDbService = geoDbService;
         }
 
+        /// <summary>
+        /// GET: api/favorites/weather
+        /// Zwraca aktualną pogodę dla wszystkich ulubionych miast użytkownika
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("weather")]
         public async Task<IActionResult> GetWeather()
         {
@@ -31,6 +39,11 @@ namespace OnlyWeathersApi.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// GET: api/favorites
+        /// Zwraca listę ulubionych miast aktualnego użytkownika
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetFavorites()
         {
@@ -39,6 +52,12 @@ namespace OnlyWeathersApi.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// POST: api/favorites
+        /// Dodaje nowe miasto do ulubionych na podstawie nazwy
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> AddFavorite([FromBody] AddFavoriteDto request)
         {
@@ -51,6 +70,12 @@ namespace OnlyWeathersApi.Controllers
             return Ok("City added to favorites.");
         }
 
+        /// <summary>
+        /// DELETE: api/favorites/{id}
+        /// Usuwa miasto z ulubionych po ID wpisu
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFavorite(int id)
         {
@@ -60,6 +85,13 @@ namespace OnlyWeathersApi.Controllers
             return success ? Ok("City removed from favorites.") : NotFound();
         }
 
+        /// <summary>
+        /// PUT: api/favorites/{id}/alias
+        /// Aktualizuje alias (własną nazwę) dla miasta w ulubionych
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         [HttpPut("{id}/alias")]
         public async Task<IActionResult> UpdateAlias(int id, [FromBody] AliasUpdateDto dto)
         {
@@ -69,7 +101,12 @@ namespace OnlyWeathersApi.Controllers
             return success ? Ok() : BadRequest("Could not update alias.");
         }
 
-
+        /// <summary>
+        /// GET: api/favorites/cities?query=...
+        /// Wyszukuje miasta po nazwie (do dodania ich do ulubionych)
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         [HttpGet("cities")]
         public async Task<IActionResult> SearchCities([FromQuery] string query)
         {
