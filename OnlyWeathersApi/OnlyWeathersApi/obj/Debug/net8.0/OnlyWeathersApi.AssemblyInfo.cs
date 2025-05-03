@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OnlyWeathersApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52cf94d135f1fe5a3614127ead43b5562fbb8306")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+14addf46a2197240d87403c3d08d050dfb5e207f")]
 [assembly: System.Reflection.AssemblyProductAttribute("OnlyWeathersApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OnlyWeathersApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

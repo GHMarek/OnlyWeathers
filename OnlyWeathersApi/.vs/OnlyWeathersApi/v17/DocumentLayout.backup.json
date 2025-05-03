@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}|OnlyWeathersApi\\OnlyWeathersApi.csproj|d:\\studia\\rest_api\\onlyweathers\\onlyweathersapi\\onlyweathersapi\\services\\geodbservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}|OnlyWeathersApi\\OnlyWeathersApi.csproj|solutionrelative:onlyweathersapi\\services\\geodbservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}|OnlyWeathersApi\\OnlyWeathersApi.csproj|d:\\studia\\rest_api\\onlyweathers\\onlyweathersapi\\onlyweathersapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}|OnlyWeathersApi\\OnlyWeathersApi.csproj|solutionrelative:onlyweathersapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}|OnlyWeathersApi\\OnlyWeathersApi.csproj|d:\\studia\\rest_api\\onlyweathers\\onlyweathersapi\\onlyweathersapi\\controllers\\favoritescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}|OnlyWeathersApi\\OnlyWeathersApi.csproj|solutionrelative:onlyweathersapi\\controllers\\favoritescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}|OnlyWeathersApi\\OnlyWeathersApi.csproj|d:\\studia\\rest_api\\onlyweathers\\onlyweathersapi\\onlyweathersapi\\services\\ijwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}|OnlyWeathersApi\\OnlyWeathersApi.csproj|solutionrelative:onlyweathersapi\\services\\ijwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}|OnlyWeathersApi\\OnlyWeathersApi.csproj|d:\\studia\\rest_api\\onlyweathers\\onlyweathersapi\\onlyweathersapi\\services\\geodbservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}|OnlyWeathersApi\\OnlyWeathersApi.csproj|solutionrelative:onlyweathersapi\\services\\geodbservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}|OnlyWeathersApi\\OnlyWeathersApi.csproj|d:\\studia\\rest_api\\onlyweathers\\onlyweathersapi\\onlyweathersapi\\services\\weatherservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -85,10 +89,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{712801E5-1A1F-47FD-8DE6-2BCAF24C6807}|OnlyWeathersApi.Tests\\OnlyWeathersApi.Tests.csproj|d:\\studia\\rest_api\\onlyweathers\\onlyweathersapi\\onlyweathersapi.tests\\services\\countryservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{712801E5-1A1F-47FD-8DE6-2BCAF24C6807}|OnlyWeathersApi.Tests\\OnlyWeathersApi.Tests.csproj|solutionrelative:onlyweathersapi.tests\\services\\countryservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}|OnlyWeathersApi\\OnlyWeathersApi.csproj|d:\\studia\\rest_api\\onlyweathers\\onlyweathersapi\\onlyweathersapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}|OnlyWeathersApi\\OnlyWeathersApi.csproj|solutionrelative:onlyweathersapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{58FDCEA1-E536-4B66-90F3-9E1A509F3ED7}|OnlyWeathersApi\\OnlyWeathersApi.csproj|d:\\studia\\rest_api\\onlyweathers\\onlyweathersapi\\onlyweathersapi\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -173,37 +173,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "JwtService.cs",
-              "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\JwtService.cs",
-              "RelativeDocumentMoniker": "OnlyWeathersApi\\Services\\JwtService.cs",
-              "ToolTip": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\JwtService.cs",
-              "RelativeToolTip": "OnlyWeathersApi\\Services\\JwtService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T18:29:51.023Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IJwtService.cs",
-              "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\IJwtService.cs",
-              "RelativeDocumentMoniker": "OnlyWeathersApi\\Services\\IJwtService.cs",
-              "ToolTip": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\IJwtService.cs",
-              "RelativeToolTip": "OnlyWeathersApi\\Services\\IJwtService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T18:29:47.416Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "FavoritesController.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Controllers\\FavoritesController.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi\\Controllers\\FavoritesController.cs",
@@ -216,7 +190,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "WeatherService.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\WeatherService.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi\\Services\\WeatherService.cs",
@@ -224,12 +198,11 @@
               "RelativeToolTip": "OnlyWeathersApi\\Services\\WeatherService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T16:19:42.086Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T16:19:42.086Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "FavoriteService.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\FavoriteService.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi\\Services\\FavoriteService.cs",
@@ -237,12 +210,11 @@
               "RelativeToolTip": "OnlyWeathersApi\\Services\\FavoriteService.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAQwHUAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T15:11:20.904Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-01T15:11:20.904Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "UserService.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\UserService.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi\\Services\\UserService.cs",
@@ -250,12 +222,61 @@
               "RelativeToolTip": "OnlyWeathersApi\\Services\\UserService.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAYwCMAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T16:33:51.603Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T16:33:51.603Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "OnlyWeathersApi\\Controllers\\UsersController.cs",
+              "ToolTip": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "OnlyWeathersApi\\Controllers\\UsersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T11:14:09.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GeoDbService.cs",
+              "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\GeoDbService.cs",
+              "RelativeDocumentMoniker": "OnlyWeathersApi\\Services\\GeoDbService.cs",
+              "ToolTip": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\GeoDbService.cs",
+              "RelativeToolTip": "OnlyWeathersApi\\Services\\GeoDbService.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwB8AAACLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T18:28:22.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IJwtService.cs",
+              "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\IJwtService.cs",
+              "RelativeDocumentMoniker": "OnlyWeathersApi\\Services\\IJwtService.cs",
+              "ToolTip": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\IJwtService.cs",
+              "RelativeToolTip": "OnlyWeathersApi\\Services\\IJwtService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T18:29:47.416Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "JwtService.cs",
+              "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\JwtService.cs",
+              "RelativeDocumentMoniker": "OnlyWeathersApi\\Services\\JwtService.cs",
+              "ToolTip": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\JwtService.cs",
+              "RelativeToolTip": "OnlyWeathersApi\\Services\\JwtService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T18:29:51.023Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi\\Controllers\\AuthController.cs",
@@ -263,12 +284,11 @@
               "RelativeToolTip": "OnlyWeathersApi\\Controllers\\AuthController.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAAQwCYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T16:32:05.701Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T16:32:05.701Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "ICountryService.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\ICountryService.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi\\Services\\ICountryService.cs",
@@ -276,12 +296,11 @@
               "RelativeToolTip": "OnlyWeathersApi\\Services\\ICountryService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T17:14:52.429Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T17:14:52.429Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Program.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi\\Program.cs",
@@ -289,25 +308,11 @@
               "RelativeToolTip": "OnlyWeathersApi\\Program.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABMAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T15:42:23.776Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T15:42:23.776Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GeoDbService.cs",
-              "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\GeoDbService.cs",
-              "RelativeDocumentMoniker": "OnlyWeathersApi\\Services\\GeoDbService.cs",
-              "ToolTip": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\GeoDbService.cs",
-              "RelativeToolTip": "OnlyWeathersApi\\Services\\GeoDbService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T18:28:22.691Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "IGeoDbService.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\IGeoDbService.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi\\Services\\IGeoDbService.cs",
@@ -315,12 +320,11 @@
               "RelativeToolTip": "OnlyWeathersApi\\Services\\IGeoDbService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T17:41:25.989Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T17:41:25.989Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "IFavoriteService.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\IFavoriteService.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi\\Services\\IFavoriteService.cs",
@@ -328,12 +332,11 @@
               "RelativeToolTip": "OnlyWeathersApi\\Services\\IFavoriteService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T15:11:03.87Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-01T15:11:03.87Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "CountryService.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Services\\CountryService.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi\\Services\\CountryService.cs",
@@ -341,12 +344,11 @@
               "RelativeToolTip": "OnlyWeathersApi\\Services\\CountryService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T17:15:09.993Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T17:15:09.993Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "FlagsDto.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Models\\DTO\\FlagsDto.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi\\Models\\DTO\\FlagsDto.cs",
@@ -354,12 +356,11 @@
               "RelativeToolTip": "OnlyWeathersApi\\Models\\DTO\\FlagsDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T14:29:03.026Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T14:29:03.026Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "WeatherServiceTests.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi.Tests\\Services\\WeatherServiceTests.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi.Tests\\Services\\WeatherServiceTests.cs",
@@ -367,12 +368,11 @@
               "RelativeToolTip": "OnlyWeathersApi.Tests\\Services\\WeatherServiceTests.cs",
               "ViewState": "AgIAACYAAAAAAAAAAAAqwDIAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T11:26:26.884Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T11:26:26.884Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "JwtServiceTests.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi.Tests\\Services\\JwtServiceTests.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi.Tests\\Services\\JwtServiceTests.cs",
@@ -380,12 +380,11 @@
               "RelativeToolTip": "OnlyWeathersApi.Tests\\Services\\JwtServiceTests.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAIwDAAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T11:21:53.127Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T11:21:53.127Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "GeoDbServiceTests.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi.Tests\\Services\\GeoDbServiceTests.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi.Tests\\Services\\GeoDbServiceTests.cs",
@@ -393,12 +392,11 @@
               "RelativeToolTip": "OnlyWeathersApi.Tests\\Services\\GeoDbServiceTests.cs",
               "ViewState": "AgIAACIAAAAAAAAAAAAQwDQAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T11:24:21.682Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T11:24:21.682Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "UserServiceTests.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi.Tests\\Services\\UserServiceTests.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi.Tests\\Services\\UserServiceTests.cs",
@@ -406,12 +404,11 @@
               "RelativeToolTip": "OnlyWeathersApi.Tests\\Services\\UserServiceTests.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAxwBoAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T11:21:13.026Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T11:21:13.026Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "NameDto.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Models\\DTO\\NameDto.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi\\Models\\DTO\\NameDto.cs",
@@ -419,12 +416,11 @@
               "RelativeToolTip": "OnlyWeathersApi\\Models\\DTO\\NameDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T14:28:21.438Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T14:28:21.438Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "FavoriteServiceTests.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi.Tests\\Services\\FavoriteServiceTests.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi.Tests\\Services\\FavoriteServiceTests.cs",
@@ -432,12 +428,11 @@
               "RelativeToolTip": "OnlyWeathersApi.Tests\\Services\\FavoriteServiceTests.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAAGYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T11:11:52.186Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T11:11:52.186Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "CountryServiceTests.cs",
               "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi.Tests\\Services\\CountryServiceTests.cs",
               "RelativeDocumentMoniker": "OnlyWeathersApi.Tests\\Services\\CountryServiceTests.cs",
@@ -445,21 +440,7 @@
               "RelativeToolTip": "OnlyWeathersApi.Tests\\Services\\CountryServiceTests.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAuwBUAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T11:25:17.433Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "OnlyWeathersApi\\Controllers\\UsersController.cs",
-              "ToolTip": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "OnlyWeathersApi\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAYwDoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T11:14:09.244Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T11:25:17.433Z"
             },
             {
               "$type": "Document",
@@ -471,8 +452,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\Controllers\\TestController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T08:56:47.111Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T08:56:47.111Z"
             },
             {
               "$type": "Document",
@@ -484,8 +464,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\Controllers\\PublicWeatherController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T17:16:58.692Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T17:16:58.692Z"
             },
             {
               "$type": "Document",
@@ -497,8 +476,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\Models\\JwtSettings.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T10:32:59.263Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T10:32:59.263Z"
             },
             {
               "$type": "Document",
@@ -510,8 +488,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-21T15:49:35.665Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T15:49:35.665Z"
             },
             {
               "$type": "Document",
@@ -523,8 +500,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\Models\\DTO\\LoginDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T06:33:43.199Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T06:33:43.199Z"
             },
             {
               "$type": "Document",
@@ -536,8 +512,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\Models\\DTO\\WeatherDto.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAqwAYAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T16:18:37.621Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T16:18:37.621Z"
             },
             {
               "$type": "Document",
@@ -549,8 +524,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\Models\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T10:33:00.242Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T10:33:00.242Z"
             },
             {
               "$type": "Document",
@@ -562,8 +536,7 @@
               "RelativeToolTip": "OnlyWeathersApi.Tests\\UnitTest1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T11:08:25.677Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T11:08:25.677Z"
             },
             {
               "$type": "Document",
@@ -575,8 +548,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\Models\\DTO\\ChangePasswordDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T10:32:30.644Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T10:32:30.644Z"
             },
             {
               "$type": "Document",
@@ -588,8 +560,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\Models\\DTO\\AliasUpdateDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T10:17:48.563Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T10:17:48.563Z"
             },
             {
               "$type": "Document",
@@ -601,8 +572,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\Models\\DTO\\AddFavoriteDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T10:32:22.923Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T10:32:22.923Z"
             },
             {
               "$type": "Document",
@@ -614,8 +584,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\Models\\DTO\\RegisterDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T06:33:42.082Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T06:33:42.082Z"
             },
             {
               "$type": "Document",
@@ -627,8 +596,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\Models\\FavoriteCity.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T09:17:39.186Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T09:17:39.186Z"
             },
             {
               "$type": "Document",
@@ -651,8 +619,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\Models\\DTO\\FavoriteCityDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T14:25:12.052Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-01T14:25:12.052Z"
             },
             {
               "$type": "Document",
@@ -664,8 +631,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\Models\\DTO\\CityDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T19:59:43.949Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T19:59:43.949Z"
             },
             {
               "$type": "Document",
@@ -677,8 +643,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\Services\\IUserService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T16:33:39.539Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T16:33:39.539Z"
             },
             {
               "$type": "Document",
@@ -689,8 +654,7 @@
               "ToolTip": "D:\\studia\\rest_api\\OnlyWeathers\\OnlyWeathersApi\\OnlyWeathersApi\\OnlyWeathersApi.csproj",
               "RelativeToolTip": "OnlyWeathersApi\\OnlyWeathersApi.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-22T19:17:27.419Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T19:17:27.419Z"
             },
             {
               "$type": "Document",
@@ -702,8 +666,7 @@
               "RelativeToolTip": "OnlyWeathersApi\\OnlyWeathersApi.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-21T15:40:01.6Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T15:40:01.6Z"
             }
           ]
         }
