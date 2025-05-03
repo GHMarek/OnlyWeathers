@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using OnlyWeathersApi.Models.DTO;
 using OnlyWeathersApi.Services;
 using System.Security.Claims;
+using static OnlyWeathersAPI.Services.UserService;
 
 namespace OnlyWeathersApi.Controllers
 {
@@ -29,11 +30,16 @@ namespace OnlyWeathersApi.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto request)
         {
-            var success = await _userService.RegisterAsync(request.Email, request.Password);
-            if (!success)
-                return BadRequest("Invalid input or user already exists.");
+            var result = await _userService.RegisterAsync(request.Email, request.Password);
 
-            return Ok("User registered successfully.");
+            return result switch
+            {
+                RegisterResult.Success => Ok("User registered successfully."),
+                RegisterResult.InvalidEmail => BadRequest("Invalid email format."),
+                RegisterResult.EmptyPassword => BadRequest("Password cannot be empty."),
+                RegisterResult.UserExists => BadRequest("User with this email already exists."),
+                _ => StatusCode(500, "Unknown registration error.")
+            };
         }
 
         /// <summary>

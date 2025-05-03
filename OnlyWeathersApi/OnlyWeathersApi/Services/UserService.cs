@@ -44,37 +44,31 @@ namespace OnlyWeathersAPI.Services
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public async Task<bool> RegisterAsync(string email, string password)
+        public async Task<RegisterResult> RegisterAsync(string email, string password)
         {
-            // Walidacja emaila
             var emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             if (string.IsNullOrEmpty(email) || !Regex.IsMatch(email, emailPattern))
-            {
-                return false; // Nie przechodzi walidacji
-            }
+                return RegisterResult.InvalidEmail;
 
             if (string.IsNullOrEmpty(password))
-            {
-                return false; // Hasło puste
-            }
+                return RegisterResult.EmptyPassword;
 
-            var exists = await _context.Users.AnyAsync(u => u.Email == email);
-            if (exists) return false;
+            if (await _context.Users.AnyAsync(u => u.Email == email))
+                return RegisterResult.UserExists;
 
             var hashed = BCrypt.Net.BCrypt.HashPassword(password);
-
-            var newUser = new User
+            _context.Users.Add(new User
             {
                 Email = email,
                 PasswordHash = hashed,
                 Role = "User",
                 CreatedAt = DateTime.UtcNow
-            };
+            });
 
-            _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
-            return true;
+            return RegisterResult.Success;
         }
+
 
         /// <summary>
         /// Pobiera użytkownika na podstawie adresu email
@@ -86,6 +80,14 @@ namespace OnlyWeathersAPI.Services
             return await _context.Users
                 .Include(u => u.FavoriteCities)
                 .FirstOrDefaultAsync(u => u.Email == email);
+        }
+
+        public enum RegisterResult
+        {
+            Success,
+            InvalidEmail,
+            EmptyPassword,
+            UserExists
         }
 
 

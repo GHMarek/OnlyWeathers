@@ -5,7 +5,7 @@
 
       <!-- Formularz rejestracji -->
       <form @submit.prevent="registerUser" class="form-group">
-        <input v-model="email" type="email" placeholder="Email" required />
+        <input v-model="formEmail" type="email" placeholder="Email" required />
         <input v-model="password" type="password" placeholder="Password" required />
         <div class="button-container">
           <button type="submit">Confirm</button>
@@ -27,8 +27,10 @@
 import { ref } from 'vue'
 import { register } from '@/services/authService'
 import { useRouter } from 'vue-router'
+import { onMounted } from 'vue'
+import { token, email } from '@/services/authState'
 
-const email = ref('')
+const formEmail = ref('')
 const password = ref('')
 const error = ref('')
 const router = useRouter()
@@ -36,7 +38,7 @@ const router = useRouter()
 // Obsługa rejestracji użytkownika
 const registerUser = async () => {
   try {
-    await register(email.value, password.value)
+    await register(formEmail.value, password.value)
     error.value = ''
     alert('Registration successful!')
     router.push('/') // przekierowanie do logowania
@@ -48,6 +50,15 @@ const registerUser = async () => {
     }
   }
 }
+
+onMounted(() => {
+  // Jeśli użytkownik był zalogowany, wyloguj go
+  if (token.value) {
+    localStorage.removeItem('token')
+    token.value = null
+    formEmail.value = ''
+  }
+})
 </script>
 
 <style scoped>
@@ -55,7 +66,7 @@ const registerUser = async () => {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   background: linear-gradient(to right, #222, #333);
   color: white;
   font-family: 'Segoe UI', sans-serif;
