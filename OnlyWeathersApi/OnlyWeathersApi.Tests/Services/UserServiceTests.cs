@@ -9,6 +9,7 @@ using OnlyWeathersApi.Data;
 using OnlyWeathersApi.Models;
 using OnlyWeathersApi.Services;
 using OnlyWeathersAPI.Services;
+using static OnlyWeathersAPI.Services.UserService;
 
 namespace OnlyWeathersApi.Tests.Services
 {
@@ -20,19 +21,16 @@ namespace OnlyWeathersApi.Tests.Services
         /// </summary>
         /// <returns></returns>
         [Fact]
-        public async Task RegisterAsync_ShouldReturnFalse_WhenEmailExists()
+        public async Task RegisterAsync_ShouldReturnUserExists_WhenEmailExists()
         {
             // --- Arrange ---
-
-            // Tworzymy opcje dla bazy in-memory
             var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase("register_fail_test")
                 .Options;
 
-            // Używamy contextu EF z in-memory DB (w zasięgu using, żeby wyczyścić po zakończeniu)
             using var context = new AppDbContext(options);
 
-            // Dodajemy użytkownika z e-mailem, który ma być już zajęty
+            // Dodajemy użytkownika z istniejącym adresem e-mail
             context.Users.Add(new User
             {
                 Email = "test@test.com",
@@ -40,21 +38,18 @@ namespace OnlyWeathersApi.Tests.Services
                 Role = "User",
                 CreatedAt = DateTime.UtcNow
             });
+
             await context.SaveChangesAsync();
 
-            // Tworzymy instancję UserService bez potrzeby użycia GeoDbService (mock pusty)
             var service = new UserService(context, Mock.Of<IGeoDbService>());
 
             // --- Act ---
-
-            // Próbujemy zarejestrować użytkownika z tym samym adresem e-mail
             var result = await service.RegisterAsync("test@test.com", "password");
 
             // --- Assert ---
-
-            // Oczekujemy, że metoda zwróci false, bo taki e-mail już istnieje
-            Assert.False(result);
+            Assert.Equal(RegisterResult.UserExists, result);
         }
+
 
     }
 

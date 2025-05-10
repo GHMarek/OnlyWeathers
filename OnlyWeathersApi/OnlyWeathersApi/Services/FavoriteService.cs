@@ -7,6 +7,7 @@ namespace OnlyWeathersApi.Services
 {
     /// <summary>
     /// Serwis do zarządzania ulubionymi miastami użytkownika
+    /// Implementuje IFavoriteService
     /// </summary>
     public class FavoriteService : IFavoriteService
     {

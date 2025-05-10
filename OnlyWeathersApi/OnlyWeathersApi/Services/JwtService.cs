@@ -10,7 +10,7 @@ namespace OnlyWeathersApi.Services
     /// <summary>
     /// Serwis do generowania tokenów JWT
     /// </summary>
-    public class JwtService
+    public class JwtService : IJwtService
     {
         private readonly JwtSettings _jwtSettings;
 
@@ -20,7 +20,9 @@ namespace OnlyWeathersApi.Services
         }
 
         /// <summary>
-        /// Generuje token JWT dla użytkownika
+        /// Generuje token JWT dla użytkownika.
+        /// Nadaje on tokenie następujące claimy:
+        /// NameIdentifier (Id użytkownika), Name (e-mail użytkownika), Role (rola użytkownika).
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
@@ -30,6 +32,7 @@ namespace OnlyWeathersApi.Services
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Email),
+                // TODO: załóżmy, że rola będzie dodana w przyszłości
                 new Claim(ClaimTypes.Role, user.Role)
             };
 

@@ -5,6 +5,7 @@ namespace OnlyWeathersApi.Services
 {
     /// <summary>
     /// Serwis odpowiedzialny za integrację z API RestCountries
+    /// Implementuje ICountryService
     /// </summary>
     public class CountryService : ICountryService
     {

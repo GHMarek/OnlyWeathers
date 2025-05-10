@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OnlyWeathersApi.Controllers
 {
+    /// <summary>
+    /// Kontroler testowy, do łatwego sprawdzania autoryzacji w Swagger/Postman
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class TestController : ControllerBase

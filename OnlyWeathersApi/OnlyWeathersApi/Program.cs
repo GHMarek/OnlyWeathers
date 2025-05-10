@@ -57,7 +57,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.WithOrigins("http://localhost:5173", "http://localhost:5255") // frontend lokalny (np. React/Vite/Blazor)
+        policy.WithOrigins("http://localhost:5173", "http://localhost:5255") // frontend lokalny
               .AllowAnyMethod()
               .AllowAnyHeader()
               .AllowCredentials();
@@ -91,10 +91,10 @@ builder.Services.AddAuthentication(options =>
     {
         ValidateIssuer = true,
         ValidIssuer = jwtSettings.Issuer,
-        ValidateAudience = false, // brak audytorium – niepotrzebne w tej aplikacji
+        ValidateAudience = false,
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
-        ValidateLifetime = true // wa¿noœæ tokena
+        ValidateLifetime = true
     };
 });
 
@@ -105,9 +105,9 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IFavoriteService, FavoriteService>();
-builder.Services.AddScoped<IGeoDbService, GeoDbService>();
-//builder.Services.AddScoped<IWeatherService, WeatherService>();
 
+
+builder.Services.AddHttpClient<IGeoDbService, GeoDbService>();
 builder.Services.AddHttpClient<IWeatherService, WeatherService>();
 builder.Services.AddHttpClient<ICountryService, CountryService>();
 
@@ -126,7 +126,7 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "OnlyWeathers API v1");
 });
 
-app.UseAuthentication(); // musi byæ przed Authorization
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

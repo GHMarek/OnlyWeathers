@@ -5,6 +5,7 @@ namespace OnlyWeathersApi.Services
 {
     /// <summary>
     /// Serwis do wyszukiwania miast po nazwie.
+    /// Implementuje IGeoDbService
     /// </summary>
     public class GeoDbService : IGeoDbService
     {
