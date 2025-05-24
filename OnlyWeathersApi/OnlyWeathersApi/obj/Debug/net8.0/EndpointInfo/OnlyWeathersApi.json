@@ -342,7 +342,7 @@
     "securitySchemes": {
       "Bearer": {
         "type": "apiKey",
-        "description": "Wpisz: Bearer {twój_token}",
+        "description": "Wpisz: Bearer twój_token",
         "name": "Authorization",
         "in": "header"
       }

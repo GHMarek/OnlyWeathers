@@ -25,8 +25,8 @@ namespace OnlyWeathersApi.Tests.Services
             // Tworzymy mockowane ustawienia JWT (klucz + issuer)
             var settings = Options.Create(new JwtSettings
             {
-                SecretKey = "tajemniczy_jwt_tajemniczy_jwt_key_123456", // klucz symetryczny
-                Issuer = "testissuer" // issuer nie jest tu testowany, ale musi być ustawiony
+                SecretKey = "tajemniczy_jwt_tajemniczy_jwt_key_123456",
+                Issuer = "testissuer"
             });
 
             // Tworzymy serwis JWT z ustawieniami

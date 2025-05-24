@@ -43,6 +43,7 @@ namespace OnlyWeathersApi.Tests.Services
                     StatusCode = HttpStatusCode.OK,
                     Content = new StringContent(jsonResponse)
                 });
+
             // Tworzenie klienta HTTP z mockowanym handlerem
             var client = new HttpClient(handlerMock.Object);
 
