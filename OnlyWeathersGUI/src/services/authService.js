@@ -1,16 +1,9 @@
-// Importujemy bibliotekę axios – służy do wysyłania zapytań HTTP
-import axios from 'axios'
-
-// Bazowy adres do naszego backendu API
-const API = 'http://localhost:5255/api'
-
-// ------------------------
-// Funkcja logowania
-// ------------------------
+import api from '@/services/api'
 import { token, email } from '@/services/authState'
 
+// Logowanie – wysyła dane i zapisuje token + email z JWT
 export const login = (emailInput, password) =>
-  axios.post(`${API}/auth/login`, { email: emailInput, password }).then(res => {
+  api.post('/api/auth/login', { email: emailInput, password }).then(res => {
     const t = res.data.token
     localStorage.setItem('token', t)
     token.value = t
@@ -19,30 +12,19 @@ export const login = (emailInput, password) =>
     email.value = jwt['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']
   })
 
-// ------------------------
-// Funkcja rejestracji
-// ------------------------
-
+// Rejestracja – tylko wysyła dane, bez zapisu tokena
 export const register = (email, password) =>
-  // Wysyłamy POST na /users/register z e-mailem i hasłem
-  axios.post(`${API}/users/register`, { email, password })
-// Uwaga: ta funkcja nie zapisuje tokena – tylko rejestruje użytkownika
+  api.post('/api/users/register', { email, password })
 
-// ------------------------
-// Funkcja zmiany hasła
-// ------------------------
-
+// Zmiana hasła – wymaga tokena w nagłówku
 export const changePassword = (currentPassword, newPassword) => {
-  // Pobieramy zapisany token z localStorage
-  const token = localStorage.getItem('token')
+  const t = localStorage.getItem('token')
 
-  // Wysyłamy PUT na /users/password z obecnym i nowym hasłem
-  return axios.put(`${API}/users/password`,
+  return api.put('/api/users/password',
     { currentPassword, newPassword },
     {
       headers: {
-        // Dodajemy token do nagłówka Authorization w formacie Bearer
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${t}`
       }
     }
   )

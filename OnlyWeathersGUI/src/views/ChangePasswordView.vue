@@ -1,5 +1,6 @@
 <template>
-  <div class="container"> <!-- Główna sekcja widoku, stylizowana jako pełnoekranowy kontener -->
+  <!-- Główna sekcja widoku -->
+  <div class="container"> 
   
       <h2>Change Password</h2>
 
@@ -28,52 +29,52 @@
 
   
 <script setup>
-import { ref } from 'vue' // ref tworzy zmienne reaktywne (reagujące na zmiany)
-import { changePassword } from '@/services/authService' // import funkcji
+  import { ref } from 'vue' // ref tworzy zmienne reaktywne (reagujące na zmiany)
+  import { changePassword } from '@/services/authService' // import funkcji
 
-// Pola formularza – dane z inputów
-const currentPassword = ref('')
-const newPassword = ref('')
+  // Pola formularza – dane z inputów
+  const currentPassword = ref('')
+  const newPassword = ref('')
 
-// Komunikaty stanu
-const error = ref('')
-const success = ref('')
+  // Komunikaty stanu
+  const error = ref('')
+  const success = ref('')
 
-// Funkcja wywoływana po kliknięciu przycisku
-const submitPasswordChange = async () => {
-  try {
-    await changePassword(currentPassword.value, newPassword.value)
-    error.value = ''
-    success.value = 'Password changed successfully!'
-  } catch (err) {
-    success.value = ''
+  // Funkcja wywoływana po kliknięciu przycisku
+  const submitPasswordChange = async () => {
+    try {
+      await changePassword(currentPassword.value, newPassword.value)
+      error.value = ''
+      success.value = 'Password changed successfully!'
+    } catch (err) {
+      success.value = ''
 
-    if (err.response?.status === 401) {
-      error.value = 'You are not authorized. Please log in again.'
-    } else if (err.response?.status === 400) {
-      error.value = err.response.data || 'Invalid current password.'
-    } else {
-      error.value = 'Something went wrong. Please try again.'
+      if (err.response?.status === 401) {
+        error.value = 'You are not authorized. Please log in again.'
+      } else if (err.response?.status === 400) {
+        error.value = err.response.data || 'Invalid current password.'
+      } else {
+        error.value = 'Something went wrong. Please try again.'
+      }
     }
   }
-}
 
 </script>
   
-  <style scoped>
+<style scoped>
   .container {
-    min-height: 100vh; /* kontener na całą wysokość ekranu */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    background: linear-gradient(to right, #222, #333); /* tło gradientowe */
+    background: linear-gradient(to right, #222, #333);
     color: white;
     font-family: 'Segoe UI', sans-serif;
   }
 
   .card {
-    background-color: #2e2e2e; /* ciemne tło karty */
+    background-color: #2e2e2e;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 0 10px #000;
@@ -119,5 +120,5 @@ const submitPasswordChange = async () => {
     margin-bottom: 1rem;
   }
   
-  </style>
+</style>
   

@@ -32,7 +32,8 @@ namespace OnlyWeathersApi.Services
             using var doc = JsonDocument.Parse(json);
             var root = doc.RootElement;
 
-            var weatherElement = root.GetProperty("weather")[0]; // pobranie pierwszego obiektu weather
+            // Pobranie pierwszego obiektu weather
+            var weatherElement = root.GetProperty("weather")[0];
 
             return new WeatherDto
             {
@@ -41,7 +42,8 @@ namespace OnlyWeathersApi.Services
                 Temperature = root.GetProperty("main").GetProperty("temp").GetDouble(),
                 Humidity = root.GetProperty("main").GetProperty("humidity").GetInt32(),
                 WindSpeed = root.GetProperty("wind").GetProperty("speed").GetDouble(),
-                Icon = $"http://openweathermap.org/img/wn/{weatherElement.GetProperty("icon").GetString()}@2x.png" // PEŁNY URL
+                // Pełny url
+                Icon = $"http://openweathermap.org/img/wn/{weatherElement.GetProperty("icon").GetString()}@2x.png"
             };
         }
 

@@ -24,103 +24,103 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { register } from '@/services/authService'
-import { useRouter } from 'vue-router'
-import { onMounted } from 'vue'
-import { token, email } from '@/services/authState'
+  import { ref } from 'vue'
+  import { register } from '@/services/authService'
+  import { useRouter } from 'vue-router'
+  import { onMounted } from 'vue'
+  import { token, email } from '@/services/authState'
 
-const formEmail = ref('')
-const password = ref('')
-const error = ref('')
-const router = useRouter()
+  const formEmail = ref('')
+  const password = ref('')
+  const error = ref('')
+  const router = useRouter()
 
-// Obsługa rejestracji użytkownika
-const registerUser = async () => {
-  try {
-    await register(formEmail.value, password.value)
-    error.value = ''
-    alert('Registration successful!')
-    router.push('/') // przekierowanie do logowania
-  } catch (err) {
-    if (err.response?.data) {
-      error.value = err.response.data // np. "User already exists"
-    } else {
-      error.value = 'Registration failed. Please try again.'
+  // Obsługa rejestracji użytkownika
+  const registerUser = async () => {
+    try {
+      await register(formEmail.value, password.value)
+      error.value = ''
+      alert('Registration successful!')
+      router.push('/') // przekierowanie do logowania
+    } catch (err) {
+      if (err.response?.data) {
+        error.value = err.response.data // np. "User already exists"
+      } else {
+        error.value = 'Registration failed. Please try again.'
+      }
     }
   }
-}
 
-onMounted(() => {
-  // Jeśli użytkownik był zalogowany, wyloguj go
-  if (token.value) {
-    localStorage.removeItem('token')
-    token.value = null
-    formEmail.value = ''
-  }
-})
+  onMounted(() => {
+    // Jeśli użytkownik był zalogowany, wyloguj go
+    if (token.value) {
+      localStorage.removeItem('token')
+      token.value = null
+      formEmail.value = ''
+    }
+  })
 </script>
 
 <style scoped>
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  background: linear-gradient(to right, #222, #333);
-  color: white;
-  font-family: 'Segoe UI', sans-serif;
-  padding: 2rem;
-}
+  .container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    background: linear-gradient(to right, #222, #333);
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 2rem;
+  }
 
-.card {
-  background-color: #2e2e2e;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #000;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 300px;
-  text-align: center;
-}
+  .card {
+    background-color: #2e2e2e;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 300px;
+    text-align: center;
+  }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 
-input {
-  padding: 0.5rem;
-  border: none;
-  border-radius: 5px;
-}
+  input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+  }
 
-.button-container {
-  display: flex;
-  justify-content: flex-start;
-}
+  .button-container {
+    display: flex;
+    justify-content: flex-start;
+  }
 
-button {
-  padding: 0.5rem;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+  button {
+    padding: 0.5rem;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 
-button:hover {
-  background-color: #45a049;
-}
+  button:hover {
+    background-color: #45a049;
+  }
 
-.links {
-  font-size: 0.9rem;
-}
+  .links {
+    font-size: 0.9rem;
+  }
 
-.error {
-  color: #ff6b6b;
-  font-size: 0.9rem;
-}
+  .error {
+    color: #ff6b6b;
+    font-size: 0.9rem;
+  }
 </style>

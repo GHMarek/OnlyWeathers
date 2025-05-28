@@ -46,7 +46,8 @@ namespace OnlyWeathersApi.Tests.Services
                 .ReturnsAsync(new HttpResponseMessage
                 {
                     StatusCode = HttpStatusCode.OK,
-                    Content = new StringContent(jsonResponse) // podstawiony JSON jako treść odpowiedzi
+                    // podstawiony JSON jako treść odpowiedzi
+                    Content = new StringContent(jsonResponse)
                 });
 
             // Tworzenie klienta HTTP z mockowanym handlerem (nie robi prawdziwego requestu)

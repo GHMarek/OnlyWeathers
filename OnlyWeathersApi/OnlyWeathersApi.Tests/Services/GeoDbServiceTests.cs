@@ -11,15 +11,18 @@ using OnlyWeathersApi.Services;
 
 namespace OnlyWeathersApi.Tests.Services
 {
-    /// <summary>
-    /// Testy jednostkowe dla serwisu GeoDbService
-    /// </summary>
+
     public class GeoDbServiceTests
     {
         [Fact]
+
+        /// <summary>
+        /// Test sprawdza, czy SearchCitiesAsync zwraca poprawnie sparsowaną listę 
+        /// miast na podstawie symulowanej odpowiedzi JSON z zewnętrznego API.
+        /// </summary>
         public async Task SearchCitiesAsync_Returns_Cities_When_Valid()
         {
-            // Arrange
+            // --- Arrange ---
             var jsonResponse = """
             {
               "data": [
@@ -59,11 +62,11 @@ namespace OnlyWeathersApi.Tests.Services
 
             var service = new GeoDbService(client, configMock);
 
-            // Act
+            // --- Act ---
             // Wywołanie testowanej metody, która ma zwrócić listę miast na podstawie zapytania
             var result = await service.SearchCitiesAsync("Paris");
 
-            // Assert
+            // --- Assert ---
             Assert.Single(result);
             Assert.Equal("Paris", result[0].City);
             Assert.Equal("France", result[0].Country);

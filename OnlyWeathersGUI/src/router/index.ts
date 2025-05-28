@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-// Import synchroniczny – dla strony głównej i dashboardu (często używane)
+// Import komponentów – dla strony głównej i dashboardu
 import HomeView from '@/views/HomeView.vue'
 import Dashboard from '@/views/Dashboard.vue'
 
-// Router Vue 3 z historią przeglądarki (czyli ładne adresy bez #)
+// Router Vue 3 z historią przeglądarki
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
 
@@ -17,7 +17,7 @@ const router = createRouter({
     {
       path: '/register',
       name: 'register',
-      component: () => import('@/views/RegisterView.vue'), // lazy loading
+      component: () => import('@/views/RegisterView.vue'),
     },
     {
       path: '/change-password',
@@ -34,7 +34,7 @@ const router = createRouter({
       name: 'dashboard',
       component: Dashboard,
     },
-    // ✨ fallback 404 (opcjonalnie)
+    // ✨ fallback 404
     {
       path: '/:pathMatch(.*)*',
       redirect: '/',

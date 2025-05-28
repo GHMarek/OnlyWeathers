@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using OnlyWeathersApi.Data;
@@ -57,7 +58,8 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.WithOrigins("http://localhost:5173", "http://localhost:5255") // frontend lokalny
+        // frontend lokalny
+        policy.WithOrigins("http://localhost:5173", "http://localhost:5255") 
               .AllowAnyMethod()
               .AllowAnyHeader()
               .AllowCredentials();
@@ -69,7 +71,10 @@ builder.Services.AddCors(options =>
 // ---------------------------------------------
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=onlyweathers.db"));
+{
+    options.UseSqlite("Data Source=onlyweathers.db");
+});
+
 
 // ---------------------------------------------
 // 4. JWT – konfiguracja uwierzytelniania

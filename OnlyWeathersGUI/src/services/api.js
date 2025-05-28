@@ -1,4 +1,4 @@
-// To jest helper do pobierania portu api z pliku .env
+// Helper do pobierania portu api z pliku .env
 
 import axios from 'axios'
 

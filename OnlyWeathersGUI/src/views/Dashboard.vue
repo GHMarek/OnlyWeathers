@@ -107,157 +107,157 @@
 
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import api from '@/services/api'
-import { useRouter } from 'vue-router'
+  import { ref, onMounted } from 'vue'
+  import api from '@/services/api'
+  import { useRouter } from 'vue-router'
 
-const router = useRouter()
-// Zmienne do przechowywania stanu komponentu
-let debounceTimeout = null
+  const router = useRouter()
+  // Zmienne do przechowywania stanu komponentu
+  let debounceTimeout = null
 
-// Zmienne reaktywne (powiązane z danymi formularzy i odpowiedzi API)
-const errorMsg = ref('')
-const weatherList = ref([])
-const search = ref('')
-const suggestions = ref([])
+  // Zmienne reaktywne (powiązane z danymi formularzy i odpowiedzi API)
+  const errorMsg = ref('')
+  const weatherList = ref([])
+  const search = ref('')
+  const suggestions = ref([])
 
-const token = localStorage.getItem('token')
-
-const editingId = ref(null) // ID miasta, którego alias edytujemy
-const editingAlias = ref('') // nowy alias
-
-const email = ref('')
-
-const isLoading = ref(true)
-
-
-
-onMounted(() => {
   const token = localStorage.getItem('token')
-  if (!token) {
-    router.push('/')
-    return
-  }
 
-  try {
-    const jwt = JSON.parse(atob(token.split('.')[1]))
-    email.value = jwt['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']
-    loadFavorites()
-  } catch (err) {
-    console.error('Invalid token', err)
-    router.push('/')
-  }
-})
+  const editingId = ref(null) // ID miasta, którego alias edytujemy
+  const editingAlias = ref('') // nowy alias
+
+  const email = ref('')
+
+  const isLoading = ref(true)
 
 
 
-// Ładowanie ulubionych miast z pogodą
-const loadFavorites = async () => {
-  isLoading.value = true
-  try {
-    const response = await api.get('/api/favorites/weather', {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    weatherList.value = response.data
-  } catch (err) {
-    console.error('Error loading favorites:', err)
-  } finally {
-    isLoading.value = false
-  }
-}
+  onMounted(() => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      router.push('/')
+      return
+    }
 
-
-// Usuwanie ulubionego miasta
-const deleteFavorite = async (id) => {
-  try {
-    await api.delete(`/api/favorites/${id}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    await loadFavorites()
-  } catch (err) {
-    console.error('Error deleting favorite:', err)
-  }
-}
-
-// Szukanie miast po wpisaniu 3+ liter
-const searchCities = () => {
-  clearTimeout(debounceTimeout)
-
-  if (search.value.trim().length < 3) {
-    suggestions.value = []
-    return
-  }
-
-  debounceTimeout = setTimeout(async () => {
     try {
-      const response = await api.get(`/api/favorites/cities?query=${search.value}`, {
+      const jwt = JSON.parse(atob(token.split('.')[1]))
+      email.value = jwt['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']
+      loadFavorites()
+    } catch (err) {
+      console.error('Invalid token', err)
+      router.push('/')
+    }
+  })
+
+
+
+  // Ładowanie ulubionych miast z pogodą
+  const loadFavorites = async () => {
+    isLoading.value = true
+    try {
+      const response = await api.get('/api/favorites/weather', {
         headers: { Authorization: `Bearer ${token}` }
       })
-      suggestions.value = response.data
+      weatherList.value = response.data
     } catch (err) {
-      console.error('Error searching cities:', err)
+      console.error('Error loading favorites:', err)
+    } finally {
+      isLoading.value = false
     }
-  }, 300)
-}
+  }
 
 
-// Dodanie miasta do ulubionych
-const addFavorite = async (cityName) => {
-  if (!cityName) return
-  try {
-    await api.post('/api/favorites', { cityName }, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
+  // Usuwanie ulubionego miasta
+  const deleteFavorite = async (id) => {
+    try {
+      await api.delete(`/api/favorites/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      await loadFavorites()
+    } catch (err) {
+      console.error('Error deleting favorite:', err)
+    }
+  }
+
+  // Szukanie miast po wpisaniu 3+ liter
+  const searchCities = () => {
+    clearTimeout(debounceTimeout)
+
+    if (search.value.trim().length < 3) {
+      suggestions.value = []
+      return
+    }
+
+    debounceTimeout = setTimeout(async () => {
+      try {
+        const response = await api.get(`/api/favorites/cities?query=${search.value}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        suggestions.value = response.data
+      } catch (err) {
+        console.error('Error searching cities:', err)
       }
-    })
-    search.value = ''
+    }, 300)
+  }
+
+
+  // Dodanie miasta do ulubionych
+  const addFavorite = async (cityName) => {
+    if (!cityName) return
+    try {
+      await api.post('/api/favorites', { cityName }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+      search.value = ''
+      suggestions.value = []
+      errorMsg.value = ''
+      await loadFavorites()
+    } catch (err) {
+      console.error('Error adding favorite:', err)
+      errorMsg.value = err.response?.data || 'An unexpected error occurred.'
+    }
+  }
+
+  // Kliknięcie podpowiedzi w liście
+  const selectCity = (city) => {
+    search.value = city.city
     suggestions.value = []
-    errorMsg.value = ''
-    await loadFavorites()
-  } catch (err) {
-    console.error('Error adding favorite:', err)
-    errorMsg.value = err.response?.data || 'An unexpected error occurred.'
   }
-}
 
-// Kliknięcie podpowiedzi w liście
-const selectCity = (city) => {
-  search.value = city.city
-  suggestions.value = []
-}
-
-// Rozpoczęcie edycji aliasu
-const startEditing = (id, alias) => {
-  editingId.value = id
-  editingAlias.value = alias
-}
-
-// Zatwierdzenie aliasu
-const submitAlias = async (id) => {
-  try {
-    await updateAlias(id, editingAlias.value)
-    editingId.value = null
-    editingAlias.value = ''
-    await loadFavorites()
-  } catch (err) {
-    console.error('Error submitting alias:', err)
+  // Rozpoczęcie edycji aliasu
+  const startEditing = (id, alias) => {
+    editingId.value = id
+    editingAlias.value = alias
   }
-}
 
-// Wysłanie aliasu do API
-const updateAlias = async (id, alias) => {
-  try {
-    await api.put(`/api/favorites/${id}/alias`, { alias }, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    })
-  } catch (err) {
-    console.error('Error updating alias:', err)
+  // Zatwierdzenie aliasu
+  const submitAlias = async (id) => {
+    try {
+      await updateAlias(id, editingAlias.value)
+      editingId.value = null
+      editingAlias.value = ''
+      await loadFavorites()
+    } catch (err) {
+      console.error('Error submitting alias:', err)
+    }
   }
-}
+
+  // Wysłanie aliasu do API
+  const updateAlias = async (id, alias) => {
+    try {
+      await api.put(`/api/favorites/${id}/alias`, { alias }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+    } catch (err) {
+      console.error('Error updating alias:', err)
+    }
+  }
 </script>
 
 

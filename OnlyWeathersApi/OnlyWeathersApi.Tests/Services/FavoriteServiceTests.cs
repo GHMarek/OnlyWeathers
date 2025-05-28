@@ -14,7 +14,8 @@ public class FavoriteServiceTests
     private AppDbContext GetDbContext()
     {
         var options = new DbContextOptionsBuilder<AppDbContext>()
-            .UseInMemoryDatabase(Guid.NewGuid().ToString()) // unikalna baza dla każdego testu
+            // unikalna baza dla każdego testu
+            .UseInMemoryDatabase(Guid.NewGuid().ToString()) 
             .Options;
 
         return new AppDbContext(options);
@@ -27,7 +28,7 @@ public class FavoriteServiceTests
     [Fact]
     public async Task AddFavoriteAsync_ShouldFail_WhenCityExists()
     {
-        // Arrange
+        // --- Arrange ---
         var db = GetDbContext();
         var geoMock = new Mock<IGeoDbService>();
         var weatherMock = new Mock<IWeatherService>();
@@ -55,10 +56,10 @@ public class FavoriteServiceTests
         });
         db.SaveChanges();
 
-        // Act
+        // --- Act ---
         var (success, error) = await service.AddFavoriteAsync(1, "Warsaw");
 
-        // Assert
+        // --- Assert ---
         Assert.False(success);
         Assert.Equal("City already added.", error);
     }
@@ -71,7 +72,8 @@ public class FavoriteServiceTests
     [Fact]
     public async Task AddFavoriteAsync_ShouldSucceed_WhenCityIsNew()
     {
-        // Arrange
+        // --- Arrange ---
+
         var db = GetDbContext();
         var geoMock = new Mock<IGeoDbService>();
         var weatherMock = new Mock<IWeatherService>();
@@ -92,10 +94,10 @@ public class FavoriteServiceTests
 
         db.SaveChanges();
 
-        // Act
+        // --- Act ---
         var (success, error) = await service.AddFavoriteAsync(1, "Krakow");
 
-        // Assert
+        // --- Assert ---
         Assert.True(success);
         Assert.Null(error);
     }

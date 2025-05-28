@@ -82,44 +82,43 @@ umożliwia przejście do rejestracji-->
 
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import { login } from '@/services/authService' // funkcja logowania i zapisu tokena
-import api from '@/services/api' // axios z bazowym URL-em
+  import { ref, onMounted } from 'vue'
+  import { useRouter } from 'vue-router'
+  import { login } from '@/services/authService' // funkcja logowania i zapisu tokena
+  import api from '@/services/api' // axios z bazowym URL-em
 
-const email = ref('')
-const password = ref('')
-const error = ref('') // informacja o błędzie logowania
-const router = useRouter()
+  const email = ref('')
+  const password = ref('')
+  const error = ref('') // informacja o błędzie logowania
+  const router = useRouter()
 
-// Lista danych pogodowych (dla prawego panelu)
-const weatherList = ref([])
-const isLoading = ref(true) // ładowanie danych
+  // Lista danych pogodowych (dla prawego panelu)
+  const weatherList = ref([])
+  const isLoading = ref(true) // ładowanie danych
 
-// Gdy komponent zostanie zamontowany, pobierz dane pogodowe
-onMounted(async () => {
-  try {
-    const response = await api.get('/api/public-weather')
-    weatherList.value = response.data
-  } catch (error) {
-    console.error('Error fetching public weather:', error)
-  } finally {
-    isLoading.value = false // wyłącz animację ładowania
+  // Gdy komponent zostanie zamontowany, pobierz dane pogodowe
+  onMounted(async () => {
+    try {
+      const response = await api.get('/api/public-weather')
+      weatherList.value = response.data
+    } catch (error) {
+      console.error('Error fetching public weather:', error)
+    } finally {
+      isLoading.value = false // wyłącz animację ładowania
+    }
+  })
+
+  // Logowanie użytkownika po kliknięciu "Confirm"
+  const loginUser = async () => {
+    try {
+      await login(email.value, password.value) // wysyła zapytanie do /auth/login
+      error.value = ''
+      router.push('/dashboard') // przekierowanie po zalogowaniu
+    } catch {
+      error.value = 'Incorrect login data.'
+    }
   }
-})
-
-// Logowanie użytkownika po kliknięciu "Confirm"
-const loginUser = async () => {
-  try {
-    await login(email.value, password.value) // wysyła zapytanie do /auth/login
-    error.value = ''
-    router.push('/dashboard') // przekierowanie po zalogowaniu
-  } catch {
-    error.value = 'Incorrect login data.'
-  }
-}
 </script>
-
 
 <style scoped>
 .container {
