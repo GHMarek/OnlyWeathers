@@ -1,19 +1,28 @@
-# .NET
-OnlyWeathersAPI/bin/
-OnlyWeathersAPI/obj/
-OnlyWeathersApi/OnlyWeathersApi.Tests/bin/
-OnlyWeathersApi/OnlyWeathersApi.Tests/bin/
+# .NET build
 **/bin/
 **/obj/
+
+# Visual Studio i Rider
+.vs/
+**/.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# CodeRush (.cr foldery)
+.cr/
+**/.cr/
 
 # Node/Vue
 OnlyWeathersGUI/node_modules/
 OnlyWeathersGUI/dist/
-.vs/
 
-# systemowe
-.env
+# Systemowe / lokalne
+# .env
 .DS_Store
+Thumbs.db
 
-# Konfiguracje lokalne
+# Lokalne konfiguracje aplikacji
 appsettings.json
